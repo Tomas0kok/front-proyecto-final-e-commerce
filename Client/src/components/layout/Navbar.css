@@ -1,0 +1,115 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #2d3e2f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.navbarLogo {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1; /* Ocupa espacio disponible */
+  justify-content: flex-end;
+  min-width: 0; /* Para que los items se encojan en pantallas pequeñas */
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.navbarList {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap; /* Permite que no se salga del contenedor */
+  overflow: hidden; /* Evita scroll horizontal */
+}
+
+.navbarItem {
+  position: relative;
+}
+
+.navbarLink {
+  color: white;
+  text-decoration: none;
+  padding: 0.4rem 0.6rem;
+  display: block;
+  white-space: nowrap;
+}
+
+.navbarDropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #4f6b55;
+  padding: 0.5rem 0;
+  list-style: none;
+  margin: 0;
+  min-width: 150px;
+}
+
+.navbarItem:hover .navbarDropdown {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .navbarList {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    flex-direction: column;
+    background-color: #2d3e2f;
+    width: 200px;
+    display: none;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  .navbarList.open {
+    display: flex;
+  }
+
+  .navbarItem {
+    width: 100%;
+  }
+
+  .navbarLink {
+    padding: 0.6rem 1rem;
+  }
+
+  .navbarDropdown {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .navbarItem:hover .navbarDropdown {
+    display: none;
+  }
+}

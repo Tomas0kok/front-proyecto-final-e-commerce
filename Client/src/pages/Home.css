@@ -1,0 +1,30 @@
+.home {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #2d3e2f, #4f6b55);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.homeContent {
+  max-width: 600px;
+}
+
+.home h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.home span {
+  color: #a5d6a7;
+}
+
+.home p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
