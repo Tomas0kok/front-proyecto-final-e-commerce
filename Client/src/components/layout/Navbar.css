@@ -1,0 +1,35 @@
+.navbar {
+  transition: background-color 0.3s ease;
+}
+
+.navbar .nav-link {
+  transition: color 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #7be495 !important;
+}
+
+.dropdown-menu {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform-origin: top;
+}
+
+.dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.dropdown-menu:not(.show) {
+  opacity: 0;
+  transform: scaleY(0.95);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.navbar-nav .nav-link {
+  cursor: pointer;
+}

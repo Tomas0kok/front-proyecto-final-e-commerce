@@ -1,10 +1,16 @@
-import { useState } from "react";
-import "./App.css";
+// src/App.js
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/layout/Navbar";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <></>;
+  return (
+    <>
+      <Navbar />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+    </>
+  );
 }
 
 export default App;
