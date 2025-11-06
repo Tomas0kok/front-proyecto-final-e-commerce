@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Services from "../pages/Services";
 import FreeContent from "../pages/FreeContent";
+import Store from "../pages/Store";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       {
         path: "/Gratis",
         element: <FreeContent />,
+      },
+      {
+        path: "/tienda",
+        element: <Store />,
       },
     ],
   },
