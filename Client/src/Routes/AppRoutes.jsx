@@ -5,12 +5,17 @@ import Register from "../pages/Register";
 import Services from "../pages/Services";
 import FreeContent from "../pages/FreeContent";
 import Store from "../pages/Store";
+import Home from "../pages/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />, // Contiene Navbar + Footer
     children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
       {
         path: "/servicios",
         element: <Services />,
