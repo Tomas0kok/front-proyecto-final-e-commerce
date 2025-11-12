@@ -1,10 +1,12 @@
-import ProductCarousel from "../components/ProductCarousel";
+import ProductSlider from "../components/ProductSlider";
+import HeroStore from "../components/HeroStore";
 
 const Store = () => {
   return (
-    <div>
-      <ProductCarousel />
-    </div>
+    <>
+      <HeroStore />
+      <ProductSlider />
+    </>
   );
 };
 

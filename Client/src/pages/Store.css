@@ -1,0 +1,125 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f5f3ef;
+  overflow-x: hidden;
+}
+
+.hero-section {
+  padding: 80px 20px;
+  background-color: #e8e4db;
+  position: relative;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #2d2d2d;
+  line-height: 1;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.hero-description {
+  max-width: 600px;
+  color: #5a5a5a;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.btn-custom {
+  background-color: #a8d584;
+  color: #2d2d2d;
+  font-weight: 600;
+  padding: 15px 40px;
+  border-radius: 50px;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-custom:hover {
+  background-color: #92c268;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.slider-container {
+  position: relative;
+  overflow: hidden;
+  padding: 60px 0;
+  margin-top: -100px;
+}
+
+.slider-track {
+  display: flex;
+  gap: 30px;
+  animation: scroll 30s linear infinite;
+}
+
+.slider-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.product-card {
+  flex: 0 0 350px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+.product-info {
+  padding: 25px;
+}
+
+.product-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2d2d2d;
+  margin-bottom: 10px;
+}
+
+.product-description {
+  color: #7a7a7a;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.product-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #6fa84a;
+}
+
+.badge-eco {
+  background-color: #a8d584;
+  color: #2d2d2d;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-bottom: 10px;
+}
