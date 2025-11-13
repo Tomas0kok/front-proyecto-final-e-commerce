@@ -8,37 +8,39 @@ import MiniCompostera from "../../public/assets/images/products/MiniCompostera.j
 
 const ProductHome = () => {
   return (
-    <body>
-      <div class="hero-section">
-        <div class="hero-content">
+    <section className="hero-section-home">
+      <div className="title-section-home">
+        <div className="hero-content-home">
           <h1>TIENDA HOGAR</h1>
-          <p class="description">Como empezar la vida consciente desde casa</p>
+          <p className="description">
+            Como empezar la vida consciente desde casa
+          </p>
         </div>
 
-        <div class="cards-container">
-          <div class="product-card bolsasReutilizables">
+        <div className="cards-container-home">
+          <div className="product-card-home bolsasReutilizables">
             src={bolsasReutilizables}
-            <div class="card-content">
-              <span class="card-tag">bolsaReutilizable</span>
+            <div className="card-content-home">
+              <span className="card-tag">bolsaReutilizable</span>
             </div>
           </div>
 
-          <div class="product-card CestoCocina">
+          <div className="product-card-home CestoCocina">
             src={CestoCocina}
-            <div class="card-content">
-              <span class="card-tag">Cesto Cocina</span>
+            <div className="card-content">
+              <span className="card-tag">Cesto Cocina</span>
             </div>
           </div>
 
-          <div class="product-card card-3">
+          <div className="product-card-home CestoEconomico">
             src={CestoEconomico}
-            <div class="card-content">
-              <span class="card-tag">Cesto Económico</span>
+            <div className="card-content">
+              <span className="card-tag">Cesto Económico</span>
             </div>
           </div>
         </div>
       </div>
-    </body>
+    </section>
   );
 };
 
