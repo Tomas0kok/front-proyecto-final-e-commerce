@@ -1,0 +1,47 @@
+/* 🔹 Título del mes */
+.fc .fc-toolbar-title {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+/* 🔹 Botones superiores (hoy, siguiente, anterior) */
+.fc .fc-button {
+  background-color: #2e7d32;
+  border: none;
+  color: white;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.fc .fc-button:hover {
+  background-color: #256928;
+}
+
+/* 🔹 Día actual (resaltado) */
+.fc .fc-daygrid-day.fc-day-today {
+  background-color: rgba(46, 125, 50, 0.15);
+}
+
+/* 🔹 Encabezados (Lunes, Martes, etc.) */
+.fc .fc-col-header-cell-cushion {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+/* 🔹 Números de los días */
+.fc .fc-daygrid-day-number {
+  color: #2e7d32 !important;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* 🔹 Bordes y fondos */
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: #d9e2da;
+}
+
+.fc .fc-scrollgrid {
+  border-radius: 10px;
+  overflow: hidden;
+}

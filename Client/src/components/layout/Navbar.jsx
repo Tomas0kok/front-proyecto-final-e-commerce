@@ -22,7 +22,7 @@ const Navbar = () => {
       path: "/tienda",
       dropdown: [
         { label: "Todos los Productos", path: "/tienda" },
-        { label: "Eco Hogar", path: "/tienda#hogar" },
+        { label: "Eco Hogar", path: "/HomeStore" },
         { label: "Eco Oficina", path: "/tienda#oficina" },
       ],
     },
