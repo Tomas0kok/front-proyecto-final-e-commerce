@@ -6,7 +6,7 @@ import Services from "../pages/Services";
 import FreeContent from "../pages/FreeContent";
 import Store from "../pages/Store";
 import Home from "../pages/Home";
-
+import HomeStore from "../pages/HomeStore";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/tienda",
         element: <Store />,
+      },
+      {
+        path: "/HomeStore",
+        element: <HomeStore />,
       },
     ],
   },

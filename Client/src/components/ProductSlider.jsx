@@ -3,6 +3,9 @@ import "./ProductSlider.css";
 import bolsasReutilizables from "../../public/assets/images/products/bolsasReutilizables.jpg";
 import CestoCocina from "../../public/assets/images/products/CestoCocina.jpg";
 import CestoEconomico from "../../public/assets/images/products/CestoEconomico.jpg";
+import ComboComposteroCompleto from "../../public/assets/images/products/ComboComposteroCompleto.jpg";
+import KitProductosReciclables from "../../public/assets/images/products/KitProductosReciclables.jpg";
+import MiniCompostera from "../../public/assets/images/products/MiniCompostera.jpg";
 
 const ProductSlider = () => {
   return (
@@ -53,31 +56,43 @@ const ProductSlider = () => {
 
           {/* Duplicados para efecto infinito */}
           <div className="product-card">
-            <img src="" alt="Compostera" className="product-image" />
+            <img
+              src={ComboComposteroCompleto}
+              alt="ComboComposteroCompleto"
+              className="product-image"
+            />
             <div className="product-info">
-              <span className="badge-eco">Eco-friendly</span>
-              <h3 className="product-title">Compostera Premium</h3>
+              <span className="badge-eco">Combo para compostar</span>
+              <h3 className="product-title">Combo Premium</h3>
               <p className="product-description">Compostera de alta calidad.</p>
               <p className="product-price">$1,500</p>
             </div>
           </div>
 
           <div className="product-card">
-            <img src="" alt="Bolsas" className="product-image" />
+            <img
+              src={KitProductosReciclables}
+              alt="Kit"
+              className="product-image"
+            />
             <div className="product-info">
               <span className="badge-eco">Biodegradable</span>
-              <h3 className="product-title">Bolsas Compostables</h3>
-              <p className="product-description">Pack de 50 bolsas.</p>
+              <h3 className="product-title">Productos reciclables</h3>
+              <p className="product-description">Tipos de productos</p>
               <p className="product-price">$350</p>
             </div>
           </div>
 
           <div className="product-card">
-            <img src="" alt="Tapas" className="product-image" />
+            <img
+              src={MiniCompostera}
+              alt="MiniCompostera"
+              className="product-image"
+            />
             <div className="product-info">
-              <span className="badge-eco">Accesorio</span>
-              <h3 className="product-title">Tapas de Repuesto</h3>
-              <p className="product-description">Tapas herméticas.</p>
+              <span className="badge-eco">Mini compostera</span>
+              <h3 className="product-title">Compostera</h3>
+              <p className="product-description">composteratera</p>
               <p className="product-price">$280</p>
             </div>
           </div>
