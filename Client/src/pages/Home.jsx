@@ -3,8 +3,7 @@ import Calendar from "../components/layout/Calendar";
 import imagenReciclaje from "../assets/todosetransforma.jpg";
 import videoFondo from "../assets/reciclaje.webm";
 import "./Home.css";
-import imagenReciclaje2 from "../assets/RESIDUO2.jpg"; 
-
+import imagenReciclaje2 from "../assets/RESIDUO2.jpg";
 
 const Home = () => {
   return (
@@ -35,19 +34,13 @@ const Home = () => {
 
         {/* Columna derecha */}
         <section className="home-right">
-  <img
-    src={imagenReciclaje}
-    alt="Reciclaje"
-    className="home-image"
-  />
-
-  <img
-    src={imagenReciclaje2}
-    alt="Reciclaje 2"
-    className="home-image second-image"
-  />
-</section>
-
+          <img src={imagenReciclaje} alt="Reciclaje" className="home-image" />
+        </section>
+        <section className="home-right">
+          <img src={imagenReciclaje2} alt="Reciclaje" className="home-image" />
+        </section>
+      </main>
+    </>
   );
 };
 
