@@ -1,5 +1,3 @@
-import "./ProductSlider.css";
-
 import bolsasReutilizables from "../../public/assets/images/products/bolsasReutilizables.jpg";
 import CestoCocina from "../../public/assets/images/products/CestoCocina.jpg";
 import CestoEconomico from "../../public/assets/images/products/CestoEconomico.jpg";

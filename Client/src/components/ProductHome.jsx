@@ -1,4 +1,3 @@
-import "./ProductHome.css";
 import bolsasReutilizables from "../../public/assets/images/products/bolsasReutilizables.jpg";
 import CestoCocina from "../../public/assets/images/products/CestoCocina.jpg";
 import CestoEconomico from "../../public/assets/images/products/CestoEconomico.jpg";
@@ -19,21 +18,29 @@ const ProductHome = () => {
 
         <div className="cards-container-home">
           <div className="product-card-home bolsasReutilizables">
-            src={bolsasReutilizables}
+            <img
+              src={bolsasReutilizables}
+              alt="bolsas"
+              className="product-image"
+            />
             <div className="card-content-home">
               <span className="card-tag">bolsaReutilizable</span>
             </div>
           </div>
 
           <div className="product-card-home CestoCocina">
-            src={CestoCocina}
+            <img
+              src={CestoCocina}
+              alt="cestoCocina"
+              className="product-image"
+            />
             <div className="card-content">
               <span className="card-tag">Cesto Cocina</span>
             </div>
           </div>
 
           <div className="product-card-home CestoEconomico">
-            src={CestoEconomico}
+            <img src={CestoEconomico} alt="cesto" className="product-image" />
             <div className="card-content">
               <span className="card-tag">Cesto Económico</span>
             </div>
