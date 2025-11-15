@@ -4,6 +4,8 @@ import imagenReciclaje from "../assets/todosetransforma.jpg";
 import videoFondo from "../assets/reciclaje.webm";
 import "./Home.css";
 import imagenReciclaje2 from "../assets/RESIDUO2.jpg";
+import ComoFunciona from "../components/layout/HowDoesThisWork";
+import "../components/layout/HowDoesThisWork.css";
 
 const Home = () => {
   return (
@@ -19,26 +21,22 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 🔹 CONTENIDO PRINCIPAL */}
+      {/* 🔹 BLOQUE "CÓMO FUNCIONA" (CARDS) */}
+      <ComoFunciona />
+
+      {/* 🔹 SECCIÓN CALENDARIO CENTRADO */}
       <main className="home-main">
-        {/* Columna izquierda */}
-        <section className="home-left">
+        <div className="calendar-section">
           <h1 className="home-title">AGENDÁ TU RECOLECCIÓN</h1>
 
           <p className="home-subtitle">
             Seleccioná una fecha para reservar la recolección de residuos.
           </p>
 
-          <Calendar />
-        </section>
-
-        {/* Columna derecha */}
-        <section className="home-right">
-          <img src={imagenReciclaje} alt="Reciclaje" className="home-image" />
-        </section>
-        <section className="home-right">
-          <img src={imagenReciclaje2} alt="Reciclaje" className="home-image" />
-        </section>
+          <div className="calendar-container">
+            <Calendar />
+          </div>
+        </div>
       </main>
     </>
   );

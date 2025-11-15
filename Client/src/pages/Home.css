@@ -1,11 +1,10 @@
+/* ------------------------------------------------------ */
 /* 🔹 HERO SECTION */
+/* ------------------------------------------------------ */
 
-/* Fuente */
 @font-face {
   font-family: "Eborame";
   src: url("../fonts/Eborame.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
 }
 
 .hero-section {
@@ -27,32 +26,25 @@
   height: 100%;
   object-fit: cover;
   filter: brightness(60%);
-  z-index: 0;
 }
 
 .hero-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
 }
 
-/* 🔹 Texto con fade-in */
 .hero-text {
   color: #e8f5e9;
   font-size: 2.8rem;
   text-align: center;
   font-weight: 600;
   padding: 0 1rem;
-  font-family: "Arial", sans-serif;
-
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 2s ease forwards;
@@ -65,27 +57,17 @@
   }
 }
 
-/* ------------------------------------- */
-/* 🔹 CONTENIDO PRINCIPAL (nuevo) */
-/* ------------------------------------- */
+/* ------------------------------------------------------ */
+/* 🔹 SECCIÓN CALENDARIO (TODO CENTRADO) */
+/* ------------------------------------------------------ */
 
-.home-main {
-  min-height: 100vh;
-  background-color: #f5f5f5;
-  padding: 2rem;
+.calendar-section {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-}
-
-/* IZQUIERDA */
-.home-left {
-  flex: 1;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  padding-bottom: 50px;
 }
 
 .home-title {
@@ -93,25 +75,30 @@
   font-weight: bold;
   color: #2e7d32;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .home-subtitle {
   font-size: 1.1rem;
   color: #555;
   margin-bottom: 2rem;
+  text-align: center;
+  max-width: 600px;
 }
 
-/* DERECHA */
-.home-right {
-  flex: 1;
+/* CENTRADO REAL DEL CALENDARIO */
+.calendar-wrapper {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
-.home-image {
+.calendar-container {
   width: 100%;
-  max-width: 450px;
+  max-width: 1000px;
+  border: 2px solid #1c7c3a;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 12px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
