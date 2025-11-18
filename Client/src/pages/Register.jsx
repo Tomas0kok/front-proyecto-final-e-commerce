@@ -1,32 +1,58 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import { useAuth } from "../context/AuthContext";
 
 const Register = () => {
+  const { register } = useAuth(); // viene del AuthContext
   const [formData, setFormData] = useState({
-    nombre: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
+  const [errorMsg, setErrorMsg] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg("");
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Las contraseñas no coinciden ❌");
+      setErrorMsg("Las contraseñas no coinciden ❌");
       return;
     }
 
-    console.log("Datos del registro:", formData);
-    alert("Registro simulado ✅");
+    setLoading(true);
+
+    try {
+      await register({
+        firstname: formData.firstname,
+        lastname: formData.lastname,
+        email: formData.email,
+        password: formData.password,
+      });
+
+      // Después de registrarse, lo mandamos a login
+      navigate("/login");
+    } catch (err) {
+      console.error("Error registro:", err);
+      const apiMessage = err?.response?.data?.message || "Error al registrarse";
+      setErrorMsg(apiMessage);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -37,15 +63,33 @@ const Register = () => {
           Unite a EcoMarket y empezá a transformar el mundo con tus acciones.
         </p>
 
+        {errorMsg && (
+          <p className="error-text" style={{ color: "red", marginBottom: 8 }}>
+            {errorMsg}
+          </p>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Nombre completo</label>
+            <label>Nombre</label>
             <input
               type="text"
-              name="nombre"
-              value={formData.nombre}
+              name="firstname"
+              value={formData.firstname}
               onChange={handleChange}
               placeholder="Tu nombre"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Apellido</label>
+            <input
+              type="text"
+              name="lastname"
+              value={formData.lastname}
+              onChange={handleChange}
+              placeholder="Tu apellido"
               required
             />
           </div>
@@ -86,8 +130,12 @@ const Register = () => {
             />
           </div>
 
-          <button type="submit" className="btn-green register">
-            Crear cuenta
+          <button
+            type="submit"
+            className="btn-green register"
+            disabled={loading}
+          >
+            {loading ? "Creando cuenta..." : "Crear cuenta"}
           </button>
         </form>
 

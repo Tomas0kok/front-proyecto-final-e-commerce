@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Leaf } from "lucide-react";
 import CustomHashLink from "../CustomHashLink";
 import "./Navbar.css";
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const { user, isAuthenticated, logout } = useAuth();
+  const location = useLocation();
 
   const navItems = [
     { label: "Inicio", path: "/" },
@@ -117,14 +120,42 @@ const Navbar = () => {
               </li>
             ))}
 
-            {/* Botón Login */}
-            <li className="nav-item ms-lg-3">
-              <Link
-                to="/login"
-                className="btn btn-success fw-medium text-white px-4"
-              >
-                Log In
-              </Link>
+            {/* Zona derecha: auth */}
+            <li className="nav-item ms-lg-3 d-flex align-items-center gap-2">
+              {isAuthenticated ? (
+                <>
+                  <span className="text-light small d-none d-lg-inline">
+                    Hola,{" "}
+                    <strong>
+                      {user?.firstname || user?.email || "usuario"}
+                    </strong>
+                  </span>
+                  <button
+                    type="button"
+                    className="btn btn-outline-light btn-sm"
+                    onClick={logout}
+                  >
+                    Cerrar sesión
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    state={{ from: location }}
+                    className="btn btn-outline-success fw-medium text-white px-3 btn-sm"
+                  >
+                    Log In
+                  </Link>
+                  <Link
+                    to="/register"
+                    state={{ from: location }}
+                    className="btn btn-success fw-medium text-white px-3 btn-sm"
+                  >
+                    Registrarse
+                  </Link>
+                </>
+              )}
             </li>
           </ul>
         </div>
