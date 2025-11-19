@@ -2,11 +2,14 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import esLocale from "@fullcalendar/core/locales/es";
-import "./Calendar.css"; // 👈 importamos los estilos personalizados
+import { useNavigate } from "react-router-dom";
+import "./Calendar.css";
 
 const Calendar = () => {
+  const navigate = useNavigate();
+
   const handleDateClick = (info) => {
-    alert(`Reservaste un turno para: ${info.dateStr}`);
+    navigate("/FormCrash", { state: { fecha: info.dateStr } });
   };
 
   return (
