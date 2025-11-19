@@ -16,6 +16,7 @@
   --eco-btn-text: #2d2d2d;
 
   --eco-accent: #6fa84a;
+  --eco-accent-hover: #5a8c3a;
   --eco-accent-soft: #a8d5a3;
 
   --eco-sem-good: #6fa84a;
@@ -34,8 +35,6 @@ body {
 body {
   background-color: var(--eco-bg);
   color: var(--eco-text-main);
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
 }
 
 /* Scroll suave global */
@@ -56,32 +55,40 @@ html {
   --bs-danger: var(--eco-sem-bad);
 }
 
-/* Botones eco por defecto (puedes ir ampliando acá) */
+/* --------- Overrides Bootstrap base --------- */
+
+/* Botón primario (se usa en Admin y en Cliente) */
 .btn-primary {
-  background-color: var(--eco-btn-bg) !important;
-  border-color: var(--eco-btn-bg) !important;
-  color: var(--eco-btn-text) !important;
+  background-color: var(--eco-btn-bg);
+  border-color: var(--eco-btn-bg);
+  color: var(--eco-btn-text);
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background-color: var(--eco-btn-bg-hover) !important;
-  border-color: var(--eco-btn-bg-hover) !important;
-  color: var(--eco-btn-text) !important;
+  background-color: var(--eco-btn-bg-hover);
+  border-color: var(--eco-btn-bg-hover);
+  color: var(--eco-btn-text);
 }
 
-/* Texto secundario */
-.text-muted {
-  color: var(--eco-text-muted) !important;
+/* Textos en color "primario" */
+.text-primary {
+  color: var(--eco-accent) !important;
 }
 
-/* Cards suaves tipo panel admin */
-.card {
-  background-color: #fdfbf6;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+/* Badges "outline secondary" que usás en Admin para el formato */
+.badge.bg-outline-secondary {
+  background-color: #fff;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: var(--eco-text-muted);
 }
 
-/* Puedes ir agregando aquí más utilidades globales
-   (chips, badges eco, modals, etc.) a medida que las necesites */
+/* Links estándar en cards (por si los usás) */
+a {
+  color: var(--eco-accent);
+}
+
+a:hover {
+  color: var(--eco-accent-hover);
+}
+

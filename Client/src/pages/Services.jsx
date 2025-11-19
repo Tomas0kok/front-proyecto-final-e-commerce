@@ -1,9 +1,35 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { Check, Crown, GraduationCap, Calendar } from "lucide-react";
+import { Check, Crown, Clock, GraduationCap, Calendar } from "lucide-react";
+import { getPublicServices } from "../services/servicesService";
+import { getActivePlans } from "../services/subscriptionsService";
+import "./Services.css";
+
+const formatPrice = (price) => {
+  if (price == null) return null;
+  if (typeof price === "number") {
+    return price.toLocaleString("es-UY", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+  }
+  return String(price);
+};
 
 const Services = () => {
   const [activeSection, setActiveSection] = useState("");
+
+  // ======== ESTADO SUBSCRIPCIONES =========
+  const [plans, setPlans] = useState([]);
+  const [loadingPlans, setLoadingPlans] = useState(true);
+  const [errorPlans, setErrorPlans] = useState(null);
+
+  // ======== ESTADO SERVICIOS (CURSOS / TALLERES) =========
+  const [courses, setCourses] = useState([]);
+  const [workshops, setWorkshops] = useState([]);
+  const [loadingServices, setLoadingServices] = useState(true);
+  const [errorServices, setErrorServices] = useState(null);
+
   const sectionRefs = {
     suscripciones: useRef(null),
     cursos: useRef(null),
@@ -12,7 +38,9 @@ const Services = () => {
 
   const location = useLocation();
 
-  // 🔹 Al montar, si hay un hash (ej: #cursos), hace scroll suave a esa sección
+  /* =========================
+   *  Scroll al hash inicial
+   * =======================*/
   useEffect(() => {
     const hash = location.hash?.replace("#", "");
     if (hash && sectionRefs[hash]?.current) {
@@ -20,7 +48,9 @@ const Services = () => {
     }
   }, [location]);
 
-  // 🔹 Detecta qué sección está visible y actualiza el hash en la URL
+  /* =========================
+   *  Resaltar sección activa
+   * =======================*/
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -42,248 +72,375 @@ const Services = () => {
     return () => observer.disconnect();
   }, []);
 
-  // 🔹 Datos
-  const subscriptions = [
-    {
-      name: "Plan Básico",
-      price: 2990,
-      period: "mes",
-      features: [
-        "Retiro mensual de reciclables",
-        "Reporte de impacto ambiental",
-        "Acceso a contenido educativo",
-        "Soporte por email",
-      ],
-    },
-    {
-      name: "Plan Premium",
-      price: 4990,
-      period: "mes",
-      features: [
-        "Todo lo del Plan Básico",
-        "Retiro semanal de reciclables",
-        "Consultoría personalizada",
-        "Acceso a talleres exclusivos",
-        "Kit de reciclaje profesional",
-        "Soporte prioritario 24/7",
-      ],
-      recommended: true,
-    },
-    {
-      name: "Plan Empresarial",
-      price: null,
-      period: "contactar",
-      features: [
-        "Todo lo del Plan Premium",
-        "Soluciones a medida",
-        "Auditoría ambiental completa",
-        "Capacitación para equipos",
-        "Certificación de sostenibilidad",
-      ],
-    },
-  ];
+  /* =========================
+   *  Cargar Servicios (Cursos + Talleres) desde API
+   * =======================*/
+  useEffect(() => {
+    let isMounted = true;
 
-  const courses = [
-    {
-      title: "Reciclaje para Principiantes",
-      duration: "4 semanas",
-      price: 8900,
-      description: "Aprende los fundamentos del reciclaje efectivo",
-    },
-    {
-      title: "Compostaje Urbano",
-      duration: "3 semanas",
-      price: 7500,
-      description: "Crea tu propio sistema de compost en casa",
-    },
-    {
-      title: "Economía Circular",
-      duration: "6 semanas",
-      price: 12900,
-      description: "Entiende los principios de la economía circular",
-    },
-  ];
+    async function fetchServices() {
+      try {
+        setLoadingServices(true);
+        setErrorServices(null);
 
-  const workshops = [
-    {
-      title: "Upcycling Creativo",
-      date: "15 de Mayo",
-      duration: "3 horas",
-      price: 3500,
-    },
-    {
-      title: "Huerta Orgánica en Casa",
-      date: "22 de Mayo",
-      duration: "4 horas",
-      price: 4200,
-    },
-    {
-      title: "Productos de Limpieza Eco",
-      date: "29 de Mayo",
-      duration: "2 horas",
-      price: 2800,
-    },
-  ];
+        const data = await getPublicServices(); // GET /api/services (status=active)
+
+        if (!isMounted) return;
+
+        const cursos = data.filter((s) => s.type === "Curso");
+        const talleres = data.filter((s) => s.type === "Taller");
+
+        setCourses(cursos);
+        setWorkshops(talleres);
+      } catch (err) {
+        console.error("[Services] Error cargando servicios:", err);
+        if (isMounted) {
+          setErrorServices("No se pudieron cargar los cursos y talleres.");
+        }
+      } finally {
+        if (isMounted) {
+          setLoadingServices(false);
+        }
+      }
+    }
+
+    fetchServices();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  /* =========================
+   *  Cargar Planes de Suscripción desde API
+   * =======================*/
+  useEffect(() => {
+    let isMounted = true;
+
+    async function fetchPlans() {
+      try {
+        setLoadingPlans(true);
+        setErrorPlans(null);
+
+        const data = await getActivePlans(); // GET /api/subscriptions/plans
+
+        if (!isMounted) return;
+
+        setPlans(data);
+      } catch (err) {
+        console.error("[Services] Error cargando planes:", err);
+        if (isMounted) {
+          setErrorPlans("No se pudieron cargar los planes de suscripción.");
+        }
+      } finally {
+        if (isMounted) {
+          setLoadingPlans(false);
+        }
+      }
+    }
+
+    fetchPlans();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  /* =========================
+   *  Lógica de "Plan recomendado"
+   * =======================*/
+  const plansWithRecommended = useMemo(() => {
+    if (!plans || plans.length === 0) return [];
+
+    const anyFeatured = plans.some(
+      (p) => p.raw && (p.raw.is_featured || p.raw.featured)
+    );
+
+    if (anyFeatured) {
+      return plans.map((p) => ({
+        ...p,
+        recommended: !!(p.raw && (p.raw.is_featured || p.raw.featured)),
+      }));
+    }
+
+    // fallback: segundo plan como recomendado
+    return plans.map((p, idx) => ({
+      ...p,
+      recommended: idx === 1,
+    }));
+  }, [plans]);
 
   return (
-    <main className="flex-grow">
-      {/* Hero */}
-      <section className="py-5 text-center bg-success text-light">
-        <div className="container">
-          <h1 className="display-5 fw-bold">Nuestros Servicios</h1>
-          <p className="lead">
-            Soluciones personalizadas para tu viaje hacia la sostenibilidad
+    <main className="services-page flex-grow">
+      {/* Hero sencillo y eco */}
+      <section className="services-hero">
+        <div className="container text-center">
+          <p className="services-hero-eyebrow">Servicios eco</p>
+          <h1 className="services-hero-title">Nuestros Servicios</h1>
+          <p className="services-hero-subtitle">
+            Soluciones personalizadas para tu viaje hacia la sostenibilidad.
           </p>
         </div>
       </section>
 
-      {/* Suscripciones */}
+      {/* =========================
+          PLANES DE SUSCRIPCIÓN
+          ========================= */}
       <section
         id="suscripciones"
         ref={sectionRefs.suscripciones}
-        className="py-5"
+        className="services-section"
       >
         <div className="container">
-          <div className="text-center mb-5">
-            <h2 className="fw-bold">Planes de Suscripción</h2>
-            <p className="text-muted">
-              Elige el plan perfecto para tus necesidades
+          <div className="services-section-header text-center mb-5">
+            <p className="services-section-eyebrow">Acompañamiento continuo</p>
+            <h2 className="services-section-title">Planes de Suscripción</h2>
+            <p className="services-section-subtitle">
+              Elige el plan perfecto para tus necesidades.
             </p>
           </div>
 
+          {errorPlans && (
+            <div className="alert alert-danger" role="alert">
+              {errorPlans}
+            </div>
+          )}
+
           <div className="row g-4">
-            {subscriptions.map((plan) => (
-              <div key={plan.name} className="col-md-4">
-                <div
-                  className={`card h-100 border-2 shadow-sm ${
-                    plan.recommended ? "border-success scale-105" : ""
-                  }`}
-                >
-                  <div className="card-body text-center position-relative">
-                    {plan.recommended && (
-                      <span className="badge bg-success position-absolute top-0 start-50 translate-middle-x mt-2 d-flex align-items-center gap-1">
-                        <Crown size={16} />
-                        Recomendado
-                      </span>
-                    )}
-
-                    <h3 className="fw-bold mt-4">{plan.name}</h3>
-
-                    <div className="my-3">
-                      {plan.price ? (
-                        <>
-                          <span className="display-6 text-success fw-bold">
-                            ${plan.price.toLocaleString()}
-                          </span>
-                          <span className="text-muted">/{plan.period}</span>
-                        </>
-                      ) : (
-                        <span className="fs-5 text-success fw-semibold">
-                          Precio personalizado
+            {loadingPlans && plansWithRecommended.length === 0 ? (
+              <div className="col-12">
+                <p className="text-muted text-center mb-0">
+                  Cargando planes de suscripción...
+                </p>
+              </div>
+            ) : plansWithRecommended.length === 0 ? (
+              <div className="col-12">
+                <p className="text-muted text-center mb-0">
+                  No hay planes activos por el momento.
+                </p>
+              </div>
+            ) : (
+              plansWithRecommended.map((plan) => (
+                <div key={plan.id} className="col-md-4">
+                  <article
+                    className={`card services-plan-card h-100 ${
+                      plan.recommended ? "services-plan-card--featured" : ""
+                    }`}
+                  >
+                    <div className="card-body text-center position-relative">
+                      {plan.recommended && (
+                        <span className="services-plan-pill">
+                          <Crown size={16} />
+                          Recomendado
                         </span>
                       )}
+
+                      <h3 className="services-plan-name">{plan.name}</h3>
+
+                      <div className="services-plan-price-block my-3">
+                        {plan.price != null && plan.price !== "" ? (
+                          <>
+                            <span className="services-plan-price">
+                              ${formatPrice(plan.price)}
+                            </span>
+                            <span className="services-plan-period">
+                              /{plan.period || "mes"}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="services-plan-price-custom">
+                            Precio personalizado
+                          </span>
+                        )}
+                      </div>
+
+                      <ul className="services-plan-features list-unstyled text-start mb-4">
+                        {plan.features && plan.features.length > 0 ? (
+                          plan.features.map((feature, index) => (
+                            <li
+                              key={index}
+                              className="services-plan-feature-item"
+                            >
+                              <Check
+                                className="services-plan-feature-icon"
+                                size={18}
+                              />
+                              {feature}
+                            </li>
+                          ))
+                        ) : (
+                          <li className="text-muted small">
+                            Próximamente detallaremos las características de
+                            este plan.
+                          </li>
+                        )}
+                      </ul>
+
+                      <button className="btn services-plan-button services-plan-button--primary w-100 fw-semibold">
+                        {plan.price != null && plan.price !== ""
+                          ? "Suscribirse"
+                          : "Contactar"}
+                      </button>
                     </div>
-
-                    <ul className="list-unstyled text-start mb-4">
-                      {plan.features.map((feature, index) => (
-                        <li
-                          key={index}
-                          className="d-flex align-items-center mb-2"
-                        >
-                          <Check className="text-success me-2" size={18} />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <button
-                      className={`btn w-100 fw-semibold ${
-                        plan.recommended
-                          ? "btn-success text-white"
-                          : "btn-outline-success"
-                      }`}
-                    >
-                      {plan.price ? "Suscribirse" : "Contactar"}
-                    </button>
-                  </div>
+                  </article>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
 
-      {/* Cursos */}
-      <section id="cursos" ref={sectionRefs.cursos} className="py-5 bg-light">
+      {/* =========================
+          CURSOS ONLINE
+          ========================= */}
+      <section
+        id="cursos"
+        ref={sectionRefs.cursos}
+        className="services-section services-section--alt"
+      >
         <div className="container">
-          <div className="text-center mb-5">
-            <h2 className="fw-bold">Cursos Online</h2>
-            <p className="text-muted">
-              Aprende a tu ritmo con nuestros cursos especializados
+          <div className="services-section-header text-center mb-5">
+            <p className="services-section-eyebrow">Formación a tu ritmo</p>
+            <h2 className="services-section-title">Cursos Online</h2>
+            <p className="services-section-subtitle">
+              Aprende con contenidos pensados para equipos que quieren actuar.
             </p>
           </div>
 
-          <div className="row g-4">
-            {courses.map((course) => (
-              <div key={course.title} className="col-md-4">
-                <div className="card h-100 shadow-sm">
-                  <div className="card-body">
-                    <div className="bg-success bg-opacity-10 p-2 rounded mb-3 d-inline-block">
-                      <GraduationCap className="text-success" size={20} />
+          {errorServices && (
+            <div className="alert alert-danger" role="alert">
+              {errorServices}
+            </div>
+          )}
+
+          {loadingServices && courses.length === 0 ? (
+            <p className="text-muted text-center mb-0">Cargando cursos...</p>
+          ) : courses.length === 0 ? (
+            <p className="text-muted text-center mb-0">
+              No hay cursos activos por el momento.
+            </p>
+          ) : (
+            <div className="row g-4">
+              {courses.map((course) => (
+                <div key={course.id} className="col-md-4">
+                  <article className="card services-service-card h-100">
+                    <div className="card-body">
+                      <div className="services-service-icon-pill">
+                        <GraduationCap size={20} />
+                      </div>
+                      <h5 className="services-service-title fw-semibold">
+                        {course.title}
+                      </h5>
+                      {course.raw?.description && (
+                        <p className="services-service-description">
+                          {course.raw.description}
+                        </p>
+                      )}
+                      <div className="services-service-meta mt-3">
+                        <div className="services-service-meta-item">
+                          <Clock size={16} />
+                          <span>
+                            {course.duration || "Duración a confirmar"}
+                          </span>
+                        </div>
+                        <div className="services-service-meta-item services-service-meta-item--price">
+                          <span>
+                            {course.price != null
+                              ? `$${formatPrice(course.price)}`
+                              : "Consultar"}
+                          </span>
+                        </div>
+                      </div>
+                      <button className="btn services-service-button services-service-button--primary w-100 mt-3">
+                        Inscribirse
+                      </button>
                     </div>
-                    <h5 className="fw-semibold">{course.title}</h5>
-                    <p className="text-muted">{course.description}</p>
-                    <div className="d-flex justify-content-between align-items-center mt-3">
-                      <small className="text-muted">⏱️ {course.duration}</small>
-                      <span className="fw-bold text-success">
-                        ${course.price.toLocaleString()}
-                      </span>
-                    </div>
-                    <button className="btn btn-success w-100 mt-3">
-                      Inscribirse
-                    </button>
-                  </div>
+                  </article>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* Talleres */}
-      <section id="talleres" ref={sectionRefs.talleres} className="py-5">
+      {/* =========================
+          TALLERES PRESENCIALES
+          ========================= */}
+      <section
+        id="talleres"
+        ref={sectionRefs.talleres}
+        className="services-section"
+      >
         <div className="container">
-          <div className="text-center mb-5">
-            <h2 className="fw-bold">Talleres Presenciales</h2>
-            <p className="text-muted">
-              Experiencias prácticas y manos a la obra
+          <div className="services-section-header text-center mb-5">
+            <p className="services-section-eyebrow">Aprender haciendo</p>
+            <h2 className="services-section-title">Talleres Presenciales</h2>
+            <p className="services-section-subtitle">
+              Experiencias prácticas y manos a la obra.
             </p>
           </div>
 
-          <div className="row g-4">
-            {workshops.map((workshop) => (
-              <div key={workshop.title} className="col-md-4">
-                <div className="card h-100 shadow-sm">
-                  <div className="card-body">
-                    <div className="bg-info bg-opacity-10 p-2 rounded mb-3 d-inline-block">
-                      <Calendar className="text-info" size={20} />
-                    </div>
-                    <h5 className="fw-semibold">{workshop.title}</h5>
-                    <p className="text-muted mb-2">📅 {workshop.date}</p>
-                    <p className="text-muted mb-3">⏱️ {workshop.duration}</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                      <span className="fw-bold text-success">
-                        ${workshop.price.toLocaleString()}
-                      </span>
-                      <button className="btn btn-info text-white">
+          {errorServices && (
+            <div className="alert alert-danger" role="alert">
+              {errorServices}
+            </div>
+          )}
+
+          {loadingServices && workshops.length === 0 ? (
+            <p className="text-muted text-center mb-0">Cargando talleres...</p>
+          ) : workshops.length === 0 ? (
+            <p className="text-muted text-center mb-0">
+              No hay talleres activos por el momento.
+            </p>
+          ) : (
+            <div className="row g-4">
+              {workshops.map((workshop) => (
+                <div key={workshop.id} className="col-md-4">
+                  <article className="card services-service-card h-100">
+                    <div className="card-body">
+                      <div className="services-service-icon-pill services-service-icon-pill--workshop">
+                        <Calendar size={20} />
+                      </div>
+                      <h5 className="services-service-title fw-semibold">
+                        {workshop.title}
+                      </h5>
+
+                      <p className="services-service-description">
+                        {workshop.raw?.description ||
+                          "Actividad práctica para equipos que quieren implementar cambios reales."}
+                      </p>
+
+                      <div className="services-service-meta mb-3">
+                        <div className="services-service-meta-item">
+                          <Calendar size={16} />
+                          <span>
+                            {workshop.raw?.date_label ||
+                              workshop.raw?.start_date ||
+                              "Fecha a confirmar"}
+                          </span>
+                        </div>
+                        <div className="services-service-meta-item">
+                          <Clock size={16} />
+                          <span>
+                            {workshop.duration || "Duración a confirmar"}
+                          </span>
+                        </div>
+                        <div className="services-service-meta-item services-service-meta-item--price">
+                          <span>
+                            {workshop.price != null
+                              ? `$${formatPrice(workshop.price)}`
+                              : "Consultar"}
+                          </span>
+                        </div>
+                      </div>
+
+                      <button className="btn services-service-button services-service-button--primary w-100 mt-3">
                         Reservar
                       </button>
                     </div>
-                  </div>
+                  </article>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </main>

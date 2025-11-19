@@ -1,11 +1,11 @@
-import React from "react";
 import Calendar from "../components/layout/Calendar";
 import videoFondo from "../assets/reciclaje.webm";
-import "./Home.css";
 import ComoFunciona from "../components/layout/HowDoesThisWork";
-import "../components/layout/HowDoesThisWork.css";
 import Impacto from "../components/Impact";
 import JoinEcolife from "../components/JoinEcoLife";
+import "./Home.css";
+import "../components/layout/HowDoesThisWork.css";
+
 
 const Home = () => {
   return (

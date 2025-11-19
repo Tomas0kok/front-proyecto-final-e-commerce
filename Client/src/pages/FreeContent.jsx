@@ -1,215 +1,337 @@
-import { BookOpen, FileText, Video } from "lucide-react";
+import { useEffect, useState } from "react";
+import { BookOpen, FileText, Video, Download } from "lucide-react";
+import { getBlogPosts, getGuides, getVideos } from "../services/contentService";
+import "./FreeContent.css";
 
 const FreeContent = () => {
-  const blogPosts = [
-    {
-      title: "10 Formas Simples de Reducir Residuos en Casa",
-      excerpt: "Pequeños cambios que generan un gran impacto ambiental",
-      date: "12 Mayo 2025",
-      readTime: "5 min",
-    },
-    {
-      title: "La Importancia del Reciclaje de Plásticos",
-      excerpt:
-        "Conoce el ciclo de vida del plástico y cómo reciclarlo correctamente",
-      date: "8 Mayo 2025",
-      readTime: "7 min",
-    },
-    {
-      title: "Compostaje: De la Cocina al Jardín",
-      excerpt: "Guía completa para comenzar tu propio compost casero",
-      date: "3 Mayo 2025",
-      readTime: "10 min",
-    },
-  ];
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [guides, setGuides] = useState([]);
+  const [videos, setVideos] = useState([]);
 
-  const guides = [
-    {
-      title: "Guía Completa de Separación de Residuos",
-      description: "Todo lo que necesitas saber para separar correctamente",
-      pages: "24 páginas",
-    },
-    {
-      title: "Manual de Reciclaje Urbano",
-      description:
-        "Soluciones prácticas para vivir de forma sostenible en la ciudad",
-      pages: "32 páginas",
-    },
-    {
-      title: "E-book: Vida Zero Waste",
-      description: "Transforma tu estilo de vida hacia el cero desperdicio",
-      pages: "48 páginas",
-    },
-  ];
+  const [loadingBlog, setLoadingBlog] = useState(true);
+  const [loadingGuides, setLoadingGuides] = useState(true);
+  const [loadingVideos, setLoadingVideos] = useState(true);
 
-  const videos = [
-    {
-      title: "¿Cómo Separar los Residuos Correctamente?",
-      duration: "8:32",
-      views: "15.2K",
-    },
-    {
-      title: "Tour por Nuestra Planta de Reciclaje",
-      duration: "12:15",
-      views: "23.8K",
-    },
-    {
-      title: "DIY: Productos de Limpieza Ecológicos",
-      duration: "10:45",
-      views: "31.5K",
-    },
-    {
-      title: "El Impacto del Plástico en los Océanos",
-      duration: "15:20",
-      views: "45.2K",
-    },
-  ];
+  const [errorBlog, setErrorBlog] = useState(null);
+  const [errorGuides, setErrorGuides] = useState(null);
+  const [errorVideos, setErrorVideos] = useState(null);
+
+  /* ========== BLOG ========== */
+  useEffect(() => {
+    let isMounted = true;
+
+    async function fetchBlog() {
+      try {
+        setLoadingBlog(true);
+        setErrorBlog(null);
+        const data = await getBlogPosts();
+        if (isMounted) setBlogPosts(data);
+      } catch (err) {
+        console.error("[FreeContent] Error cargando blog:", err);
+        if (isMounted)
+          setErrorBlog("No se pudieron cargar las publicaciones del blog.");
+      } finally {
+        if (isMounted) setLoadingBlog(false);
+      }
+    }
+
+    fetchBlog();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  /* ========== GUIDES ========== */
+  useEffect(() => {
+    let isMounted = true;
+
+    async function fetchGuides() {
+      try {
+        setLoadingGuides(true);
+        setErrorGuides(null);
+        const data = await getGuides();
+        if (isMounted) setGuides(data);
+      } catch (err) {
+        console.error("[FreeContent] Error cargando guías:", err);
+        if (isMounted) setErrorGuides("No se pudieron cargar las guías.");
+      } finally {
+        if (isMounted) setLoadingGuides(false);
+      }
+    }
+
+    fetchGuides();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  /* ========== VIDEOS ========== */
+  useEffect(() => {
+    let isMounted = true;
+
+    async function fetchVideos() {
+      try {
+        setLoadingVideos(true);
+        setErrorVideos(null);
+        const data = await getVideos();
+        if (isMounted) setVideos(data);
+      } catch (err) {
+        console.error("[FreeContent] Error cargando videos:", err);
+        if (isMounted) setErrorVideos("No se pudieron cargar los videos.");
+      } finally {
+        if (isMounted) setLoadingVideos(false);
+      }
+    }
+
+    fetchVideos();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const formatDate = (date) => {
+    if (!date) return "";
+    const d = new Date(date);
+    if (Number.isNaN(d.getTime())) return "";
+    return d.toLocaleDateString("es-ES", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  };
 
   return (
-    <main>
-      {/* Hero */}
-      <section className="py-5 text-center bg-success text-white">
+    <main className="free-content-page">
+      {/* HERO */}
+      <section className="free-content-hero">
         <div className="container">
-          <h1 className="display-5 fw-bold mb-3">Contenido Gratuito</h1>
-          <p className="lead">
-            Recursos educativos para tu viaje hacia la sostenibilidad
-          </p>
-        </div>
-      </section>
-
-      {/* Blog */}
-      <section id="blog" className="py-5 bg-light">
-        <div className="container">
-          <div className="d-flex align-items-center mb-4">
-            <div className="bg-success bg-opacity-25 p-3 rounded me-3">
-              <BookOpen className="text-success" />
+          <div className="free-content-hero-inner">
+            <div>
+              <h1 className="free-content-hero-title">Contenido gratuito</h1>
+              <p className="free-content-hero-subtitle">
+                Blog, guías descargables y videos para acompañar tu proyecto de
+                sostenibilidad.
+              </p>
             </div>
-            <h2 className="fw-bold mb-0">Blog</h2>
-          </div>
-
-          <div className="row g-4">
-            {blogPosts.map((post, index) => (
-              <div className="col-md-4" key={index}>
-                <div className="card h-100 shadow-sm border-0">
-                  <div className="card-body">
-                    <small className="text-muted">
-                      {post.date} • {post.readTime} lectura
-                    </small>
-                    <h5 className="card-title mt-3">{post.title}</h5>
-                    <p className="card-text text-secondary">{post.excerpt}</p>
-                    <a
-                      href="#"
-                      className="text-success fw-semibold text-decoration-none"
-                    >
-                      Leer más →
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* Guías */}
-      <section id="guias" className="py-5">
+      {/* BLOG */}
+      <section
+        id="blog"
+        className="free-content-section free-content-section--alt"
+      >
         <div className="container">
-          <div className="d-flex align-items-center mb-4">
-            <div className="bg-warning bg-opacity-25 p-3 rounded me-3">
-              <FileText className="text-warning" />
+          <div className="free-content-section-header">
+            <div className="free-content-icon-pill">
+              <BookOpen size={20} className="free-content-icon" />
             </div>
-            <h2 className="fw-bold mb-0">Guías Descargables</h2>
-          </div>
-
-          <div className="row g-4">
-            {guides.map((guide, index) => (
-              <div className="col-md-4" key={index}>
-                <div className="card h-100 border-0 shadow-sm p-4">
-                  <div className="mb-3 fs-3">📚</div>
-                  <h5 className="card-title">{guide.title}</h5>
-                  <p className="text-secondary">{guide.description}</p>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <small className="text-muted">{guide.pages}</small>
-                    <button className="btn btn-warning text-white">
-                      Descargar
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Videos */}
-      <section id="videos" className="py-5 bg-light">
-        <div className="container">
-          <div className="d-flex align-items-center mb-4">
-            <div className="bg-success bg-opacity-25 p-3 rounded me-3">
-              <Video className="text-success" />
+            <div>
+              <h2 className="free-content-section-title">Blog</h2>
+              <p className="free-content-section-subtitle">
+                Artículos cortos con ideas prácticas y ejemplos reales.
+              </p>
             </div>
-            <h2 className="fw-bold mb-0">Videos Educativos</h2>
           </div>
 
-          <div className="row g-4">
-            {videos.map((video, index) => (
-              <div className="col-md-6" key={index}>
-                <div className="card h-100 border-0 shadow-sm">
-                  <div
-                    className="position-relative bg-dark text-white d-flex align-items-center justify-content-center"
-                    style={{ height: "200px" }}
-                  >
-                    <div
-                      className="bg-success bg-opacity-50 rounded-circle d-flex align-items-center justify-content-center"
-                      style={{ width: "60px", height: "60px" }}
-                    >
-                      <div
-                        style={{
-                          width: 0,
-                          height: 0,
-                          borderLeft: "14px solid white",
-                          borderTop: "8px solid transparent",
-                          borderBottom: "8px solid transparent",
-                          marginLeft: "4px",
-                        }}
-                      ></div>
+          {errorBlog && (
+            <div className="alert alert-danger" role="alert">
+              {errorBlog}
+            </div>
+          )}
+
+          {loadingBlog && blogPosts.length === 0 ? (
+            <p className="free-content-meta">Cargando publicaciones...</p>
+          ) : blogPosts.length === 0 ? (
+            <p className="free-content-meta">
+              Aún no hay publicaciones de blog disponibles.
+            </p>
+          ) : (
+            <div className="row g-4">
+              {blogPosts.map((post) => {
+                const formattedDate = formatDate(post.date);
+                const excerpt =
+                  post.raw?.excerpt ||
+                  post.raw?.summary ||
+                  "Próximamente más detalles de esta publicación.";
+
+                return (
+                  <div className="col-md-4" key={post.id}>
+                    <div className="card free-content-card h-100">
+                      <div className="card-body d-flex flex-column">
+                        <small className="free-content-meta mb-1">
+                          {formattedDate
+                            ? `${formattedDate} • ${post.views} vistas`
+                            : `${post.views} vistas`}
+                        </small>
+                        <h5 className="free-content-card-title mt-1">
+                          {post.title}
+                        </h5>
+                        <p className="free-content-card-text flex-grow-1 mb-2">
+                          {excerpt}
+                        </p>
+                        <button className="free-content-link-button align-self-start">
+                          Leer más →
+                        </button>
+                      </div>
                     </div>
-                    <span className="position-absolute bottom-0 end-0 m-2 bg-dark bg-opacity-75 px-2 py-1 rounded small">
-                      {video.duration}
-                    </span>
                   </div>
-                  <div className="card-body">
-                    <h5 className="card-title">{video.title}</h5>
-                    <p className="text-muted mb-0">
-                      {video.views} visualizaciones
-                    </p>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* GUÍAS */}
+      <section id="guias" className="free-content-section">
+        <div className="container">
+          <div className="free-content-section-header">
+            <div className="free-content-icon-pill">
+              <FileText size={20} className="free-content-icon" />
+            </div>
+            <div>
+              <h2 className="free-content-section-title">Guías descargables</h2>
+              <p className="free-content-section-subtitle">
+                Material concreto para imprimir o trabajar con tu equipo.
+              </p>
+            </div>
+          </div>
+
+          {errorGuides && (
+            <div className="alert alert-danger" role="alert">
+              {errorGuides}
+            </div>
+          )}
+
+          <div className="row g-3">
+            {loadingGuides && guides.length === 0 ? (
+              <div className="col-12">
+                <p className="text-muted mb-0">Cargando guías...</p>
+              </div>
+            ) : guides.length === 0 ? (
+              <div className="col-12">
+                <p className="text-muted mb-0">No hay guías disponibles.</p>
+              </div>
+            ) : (
+              guides.map((guide) => (
+                <div className="col-md-4" key={guide.id}>
+                  {/* Card igual que Admin */}
+                  <div className="card border-0 shadow-sm h-100">
+                    <div className="card-body">
+                      <div className="d-flex align-items-center justify-content-center bg-light rounded mb-3 p-3">
+                        <Download size={28} className="text-primary" />
+                      </div>
+                      <h6 className="fw-semibold">{guide.title}</h6>
+                      <div className="d-flex align-items-center gap-2 mb-3">
+                        <span className="badge bg-outline-secondary border text-secondary">
+                          {guide.format}
+                        </span>
+                        <span className="text-muted small">
+                          {guide.downloads} descargas
+                        </span>
+                      </div>
+                      <button className="btn btn-primary btn-sm w-100">
+                        Descargar
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="py-5 bg-success text-white text-center">
+      {/* VIDEOS */}
+      <section
+        id="videos"
+        className="free-content-section free-content-section--alt"
+      >
         <div className="container">
-          <h2 className="fw-bold mb-3">¿Quieres Más Contenido Exclusivo?</h2>
-          <p className="mb-4">
-            Suscríbete a nuestro newsletter y recibe guías, tips y recursos
-            directamente en tu email.
-          </p>
-          <form className="d-flex justify-content-center gap-2 flex-wrap">
-            <input
-              type="email"
-              className="form-control w-auto"
-              placeholder="tu@email.com"
-              style={{ minWidth: "250px" }}
-            />
-            <button type="submit" className="btn btn-light fw-semibold">
-              Suscribirse
-            </button>
-          </form>
+          <div className="free-content-section-header">
+            <div className="free-content-icon-pill">
+              <Video size={20} className="free-content-icon" />
+            </div>
+            <div>
+              <h2 className="free-content-section-title">Videos educativos</h2>
+              <p className="free-content-section-subtitle">
+                Piezas cortas para explicar conceptos clave de forma visual.
+              </p>
+            </div>
+          </div>
+
+          {errorVideos && (
+            <div className="alert alert-danger" role="alert">
+              {errorVideos}
+            </div>
+          )}
+
+          <div className="row g-4">
+            {loadingVideos && videos.length === 0 ? (
+              <div className="col-12">
+                <p className="free-content-meta mb-0">Cargando videos...</p>
+              </div>
+            ) : videos.length === 0 ? (
+              <div className="col-12">
+                <p className="free-content-meta mb-0">
+                  Aún no hay videos disponibles.
+                </p>
+              </div>
+            ) : (
+              videos.map((video) => (
+                <div className="col-md-6" key={video.id}>
+                  <div className="card free-content-card h-100">
+                    <div className="free-content-video-thumb">
+                      <div className="free-content-video-play">
+                        <div className="free-content-video-play-inner" />
+                      </div>
+                      {video.duration && (
+                        <span className="free-content-video-duration">
+                          {video.duration}
+                        </span>
+                      )}
+                    </div>
+                    <div className="card-body">
+                      <h5 className="free-content-card-title">{video.title}</h5>
+                      <p className="free-content-meta mb-0">
+                        {video.views} visualizaciones
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* NEWSLETTER */}
+      <section className="free-content-newsletter">
+        <div className="container">
+          <div className="free-content-newsletter-inner">
+            <div className="free-content-newsletter-copy">
+              <h2 className="free-content-section-title">
+                ¿Quieres más contenido exclusivo?
+              </h2>
+              <p className="free-content-card-text mb-0">
+                Suscríbete al newsletter para recibir novedades y recursos
+                directamente en tu correo.
+              </p>
+            </div>
+
+            <form className="free-content-newsletter-form">
+              <input
+                type="email"
+                className="form-control free-content-input"
+                placeholder="tu@email.com"
+              />
+              <button type="submit" className="btn btn-success fw-semibold">
+                Suscribirse
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </main>

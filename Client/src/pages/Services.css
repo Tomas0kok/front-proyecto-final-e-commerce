@@ -1,0 +1,312 @@
+/* ============================
+ * SERVICES PAGE (CLIENTE)
+ * ============================ */
+
+.services-page {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* ---------- HERO SUAVE ---------- */
+
+.services-page .services-hero {
+  padding: 3rem 0 2.5rem;
+  background: linear-gradient(
+    180deg,
+    #c5e1ac 0%,
+    /* más verde y notorio */ #d8edbf 45%,
+    #e7f3cf 100%
+  );
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.services-page .services-hero-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--eco-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.services-page .services-hero-title {
+  font-size: clamp(2rem, 2.3vw + 1.4rem, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--eco-text-main);
+}
+
+.services-page .services-hero-subtitle {
+  max-width: 640px;
+  margin: 0 auto;
+  font-size: 0.98rem;
+  color: var(--eco-text-muted);
+}
+
+/* ---------- SECCIONES ---------- */
+
+.services-page .services-section {
+  padding: 3rem 0;
+  background-color: var(--eco-bg); /* eco principal */
+}
+
+.services-page .services-section--alt {
+  background-color: #f5f0e5; /* tono complementario */
+}
+
+.services-page .services-section-header {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.services-page .services-section-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--eco-text-muted);
+  margin-bottom: 0.2rem;
+}
+
+.services-page .services-section-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.services-page .services-section-subtitle {
+  font-size: 0.95rem;
+  color: var(--eco-text-muted);
+}
+
+/* ============================
+ * PLANES DE SUSCRIPCIÓN
+ * ============================ */
+
+.services-page .card.services-plan-card {
+  position: relative;
+  border-radius: 1rem;
+  background-color: #fdfbf6; /* dejo tu look original de card eco */
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: transform 0.16s ease, box-shadow 0.16s ease,
+    border-color 0.16s ease, background-color 0.16s ease;
+}
+
+/* Hover: sutil pero con buena UX */
+.services-page .card.services-plan-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.16);
+  border-color: rgba(111, 168, 74, 0.35);
+  background-color: #fbf7ef;
+}
+
+.services-plan-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Plan destacado: sin exagerar */
+.services-page .services-plan-card--featured {
+  border-width: 2px;
+  border-color: var(--eco-accent);
+}
+
+.services-page .services-plan-pill {
+  position: absolute;
+  top: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  background-color: #f0f8ec;
+  color: var(--eco-text-main);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.services-page .services-plan-name {
+  margin-top: 2rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.services-page .services-plan-price-block {
+  margin-bottom: 0.9rem;
+}
+
+.services-page .services-plan-price {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--eco-accent);
+}
+
+.services-page .services-plan-period {
+  margin-left: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--eco-text-muted);
+}
+
+.services-page .services-plan-price-custom {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--eco-accent);
+}
+
+.services-page .services-plan-features {
+  padding: 0;
+  margin: 0 0 1rem;
+  flex-grow: 1;
+}
+
+.services-page .services-plan-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--eco-text-main);
+  margin-bottom: 0.35rem;
+}
+
+.services-page .services-plan-feature-icon {
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+  color: var(--eco-accent);
+}
+
+/* Botones de planes */
+.services-page .services-plan-button {
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.services-page .services-plan-button--primary {
+  background-color: var(--eco-btn-bg); /* #a8d584 */
+  border-color: var(--eco-btn-bg);
+  color: var(--eco-btn-text);
+}
+
+.services-page .services-plan-button--primary:hover {
+  background-color: var(--eco-btn-bg-hover); /* #92c268 */
+  border-color: var(--eco-btn-bg-hover);
+  color: var(--eco-btn-text);
+}
+
+/* ============================
+ * CURSOS / TALLERES
+ * ============================ */
+
+.services-page .card.services-service-card {
+  border-radius: 1rem;
+  background-color: #ffffff; /* blanco para que resalte ante el fondo eco */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.services-page .card.services-service-card .card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.services-page .card.services-service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.15);
+}
+
+/* Icono arriba, con verdecito suave */
+.services-page .services-service-icon-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 0.85rem;
+  background-color: rgba(111, 168, 74, 0.1);
+  color: var(--eco-accent);
+  margin-bottom: 0.8rem;
+}
+
+.services-page .services-service-icon-pill--workshop {
+  background-color: rgba(127, 191, 108, 0.14);
+}
+
+.services-page .services-service-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.services-page .services-service-description {
+  font-size: 0.92rem;
+  flex-grow: 1;
+  color: var(--eco-text-muted);
+  margin-bottom: 0.8rem;
+}
+
+/* Chips de info */
+
+.services-page .services-service-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+}
+
+.services-page .services-service-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background-color: #f5f0e5;
+  color: var(--eco-text-main);
+}
+
+.services-page .services-service-meta-item--price {
+  margin-left: auto;
+  background-color: #eaf5e2;
+  font-weight: 600;
+}
+
+/* Botones cursos/talleres */
+
+.services-page .services-service-button {
+  border-radius: 999px;
+  font-size: 0.9rem;
+  margin-top: auto;
+}
+
+/* Cursos: botón verde sólido */
+.services-page .services-service-button {
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+/* Mismo estilo que los planes */
+.services-page .services-service-button--primary {
+  background-color: var(--eco-btn-bg);
+  border-color: var(--eco-btn-bg);
+  color: var(--eco-btn-text);
+}
+
+.services-page .services-service-button--primary:hover {
+  background-color: var(--eco-btn-bg-hover);
+  border-color: var(--eco-btn-bg-hover);
+  color: var(--eco-btn-text);
+}
+
+/* ---------- RESPONSIVE SUAVE ---------- */
+
+@media (max-width: 767.98px) {
+  .services-page .services-hero {
+    padding: 2.4rem 0 2rem;
+  }
+
+  .services-page .services-section {
+    padding: 2.5rem 0;
+  }
+}

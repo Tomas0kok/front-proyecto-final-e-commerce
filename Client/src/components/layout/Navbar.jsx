@@ -4,7 +4,6 @@ import { Leaf } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import CustomHashLink from "../CustomHashLink";
 import "./Navbar.css";
-import "../../ecoTheme.css";
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -17,19 +16,10 @@ const Navbar = () => {
     {
       label: "Impacto",
       path: "/impacto",
-      dropdown: [
-        { label: "Nuestro Impacto", path: "/impacto#impacto" },
-        { label: "Sobre Nosotros", path: "/impacto#nosotros" },
-      ],
     },
     {
       label: "Tienda",
       path: "/tienda",
-      dropdown: [
-        { label: "Todos los Productos", path: "/tienda" },
-        { label: "Eco Hogar", path: "/HomeStore" },
-        { label: "Eco Oficina", path: "/tienda#oficina" },
-      ],
     },
     {
       label: "Servicios",
