@@ -88,3 +88,100 @@
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
+.form-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  animation: fadeIn 1s ease;
+}
+
+.form-title {
+  text-align: center;
+  font-size: 32px;
+  color: #2d6a4f; /* verde ecolife */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.eco-form {
+  background: #f0fdf4;
+  padding: 25px;
+  border-radius: 12px;
+  border: 2px solid #2d6a4f;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+input,
+select {
+  padding: 10px;
+  border: 1px solid #999;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.checkbox-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.eco-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  background: #2d6a4f;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.eco-btn:hover {
+  background: #1b4332;
+}
+
+/* --- ALERTA LINDA --- */
+
+.eco-alert {
+  position: fixed;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2d6a4f;
+  color: white;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 18px;
+  opacity: 0;
+  transition: all 0.4s ease-out;
+  z-index: 9999;
+}
+
+.eco-alert.show {
+  top: 20px;
+  opacity: 1;
+}
+
+/* FADE IN SUAVE */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

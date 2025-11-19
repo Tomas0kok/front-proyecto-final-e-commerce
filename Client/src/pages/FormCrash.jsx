@@ -1,61 +1,140 @@
-import React from "react";
+import React, { useState } from "react";
 import "./FormCrash.css";
 
-export default function FormResiduo() {
-  return (
-    <div className="form-container fade-in">
-      <h1 className="form-title">Solicitud de Recolección</h1>
+const FormCrash = () => {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    apellido: "",
+    direccion: "",
+    telefono: "",
+    residuos: [],
+    suscripcion: "",
+    horario: "",
+  });
 
-      <form className="form-box">
-        {/* Nombre */}
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleCheckbox = (e) => {
+    const value = e.target.value;
+
+    setFormData((prev) => ({
+      ...prev,
+      residuos: prev.residuos.includes(value)
+        ? prev.residuos.filter((item) => item !== value)
+        : [...prev.residuos, value],
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // ALERTA LINDA PERSONALIZADA
+    const alerta = document.createElement("div");
+    alerta.className = "eco-alert";
+    alerta.textContent = "¡Gracias! Nos contactaremos contigo pronto.";
+    document.body.appendChild(alerta);
+
+    setTimeout(() => {
+      alerta.classList.add("show");
+    }, 100);
+
+    setTimeout(() => {
+      alerta.classList.remove("show");
+      setTimeout(() => alerta.remove(), 300);
+    }, 2500);
+  };
+
+  return (
+    <div className="form-container">
+      <h1 className="form-title">Solicitud de Retiro Ecolife</h1>
+
+      <form className="eco-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Nombre</label>
-          <input type="text" placeholder="Tu nombre" required />
+          <input type="text" name="nombre" onChange={handleChange} required />
         </div>
 
-        {/* Apellido */}
         <div className="form-group">
           <label>Apellido</label>
-          <input type="text" placeholder="Tu apellido" required />
+          <input type="text" name="apellido" onChange={handleChange} required />
         </div>
 
-        {/* Dirección */}
         <div className="form-group">
           <label>Dirección</label>
-          <input type="text" placeholder="Tu dirección" required />
+          <input
+            type="text"
+            name="direccion"
+            onChange={handleChange}
+            required
+          />
         </div>
 
-        {/* Tipo de residuo (checkboxes) */}
+        <div className="form-group">
+          <label>Teléfono</label>
+          <input
+            type="tel"
+            name="telefono"
+            onChange={handleChange}
+            required
+            placeholder="099 123 456"
+          />
+        </div>
+
         <div className="form-group">
           <label>Tipo de residuo</label>
+
           <div className="checkbox-group">
             <label>
-              <input type="checkbox" value="organico" /> Residuos orgánicos
+              <input
+                type="checkbox"
+                value="orgánico"
+                onChange={handleCheckbox}
+              />{" "}
+              Orgánico
             </label>
+
             <label>
-              <input type="checkbox" value="papel" /> Papel
+              <input type="checkbox" value="papel" onChange={handleCheckbox} />{" "}
+              Papel
             </label>
+
             <label>
-              <input type="checkbox" value="carton" /> Cartón
+              <input type="checkbox" value="cartón" onChange={handleCheckbox} />{" "}
+              Cartón
             </label>
           </div>
         </div>
 
-        {/* Suscripción (solo editás estos textos) */}
         <div className="form-group">
-          <label>Tipo de suscripción</label>
-          <select required>
-            <option value="">Selecciona una opción</option>
-            <option value="basic">Suscripción Básica</option>
-            <option value="standard">Suscripción Standard</option>
-            <option value="premium">Suscripción Premium</option>
+          <label>Horario disponible</label>
+          <select name="horario" onChange={handleChange} required>
+            <option value="">Selecciona un horario</option>
+            <option value="08 a 14">08:00 a 14:00</option>
+            <option value="15 a 19">15:00 a 19:00</option>
           </select>
         </div>
 
-        <button type="submit" className="form-button">
+        <div className="form-group">
+          <label>Tipo de suscripción</label>
+          <select name="suscripcion" onChange={handleChange} required>
+            <option value="">Elegir opción</option>
+            <option value="Básica">Básica</option>
+            <option value="Estandar">Estándar</option>
+            <option value="Premium">Premium</option>
+          </select>
+        </div>
+
+        <button className="eco-btn" type="submit">
           Enviar
         </button>
       </form>
     </div>
   );
-}
+};
+
+export default FormCrash;
