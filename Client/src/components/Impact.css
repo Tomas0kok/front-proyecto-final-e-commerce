@@ -1,57 +1,66 @@
-/* Sección completa */
-.impacto-section {
-  width: 100%;
-  padding: 80px 20px;
-  background-color: #ffffff;
+.impact-container {
+  background: #f5f3ef; /* beige suave */
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* Contenedor central */
-.impacto-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+.impact-title {
+  font-weight: 700;
+  color: #1f2e25; /* verde oscuro del navbar */
 }
 
-/* Título */
-.impacto-title {
-  font-size: 2.8rem;
-  color: #2d6a4f; /* Verde */
-  font-weight: bold;
-  margin-bottom: 60px;
+.impact-subtitle {
+  font-weight: 600;
+  color: #1f2e25;
+  margin-bottom: 15px;
 }
 
-/* Grid */
-.impacto-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
-}
-
-/* Tarjetas */
-.impacto-card {
-  background-color: #e9f7ef; /* Verde muy claro */
-  padding: 30px;
-  border-radius: 22px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Efecto hover */
-.impacto-card:hover {
-  transform: scale(1.06);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
-}
-
-/* Número grande */
-.impacto-number {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #2d6a4f;
-  margin-bottom: 10px;
-}
-
-/* Texto descriptivo */
-.impacto-text {
+.impact-text {
   color: #333;
+  line-height: 1.6;
+  margin-bottom: 12px;
   font-size: 1rem;
+}
+
+.impact-cards {
+  margin-top: 25px;
+}
+
+.impact-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.impact-card:hover {
+  transform: translateY(-5px);
+}
+
+.impact-card-number {
+  color: #1f2e25;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.impact-card-text {
+  color: #444;
+  margin-top: 8px;
+  font-size: 0.95rem;
+}
+.impact-container {
+  background-image: url("../assets/papel-suave.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.97;
+}
+.impact-divider {
+  width: 80px;
+  height: 4px;
+  background: #1f2e25;
+  border-radius: 4px;
+  margin: 30px auto;
 }

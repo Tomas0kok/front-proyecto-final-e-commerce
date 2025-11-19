@@ -1,1 +1,92 @@
-src/components/layout/Footer.jsx
+/* ===========================
+   FOOTER ESTILOS
+   =========================== */
+
+.footer {
+  background: #0f1111; /* negro suave con profundidad */
+  color: #e5e5e5;
+  padding: 50px 0 20px;
+  margin-top: 60px;
+  font-family: "Inter", sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 25px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* COLUMNAS */
+.footer-col {
+  flex: 1 1 250px;
+  min-width: 230px;
+}
+
+/* LOGO */
+.footer-logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #90c47a; /* verde ecológico */
+  margin-bottom: 10px;
+}
+
+/* DESCRIPCIÓN */
+.footer-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cfcfcf;
+}
+
+/* TITULOS */
+.footer-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+/* LINKS */
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #cfcfcf;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #90c47a; /* hover verde */
+}
+
+/* COPYRIGHT */
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 25px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #9f9f9f;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .footer-container {
+    text-align: center;
+  }
+  .footer-col {
+    align-items: center;
+  }
+}
