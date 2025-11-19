@@ -1,9 +1,10 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Leaf } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 import CustomHashLink from "../CustomHashLink";
 import "./Navbar.css";
-import { useAuth } from "../../context/AuthContext";
+import "../../ecoTheme.css";
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -50,18 +51,20 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
-      <div className="container">
-        {/* Logo */}
-        <CustomHashLink
-          to="/"
-          className="navbar-brand d-flex align-items-center gap-2"
-        >
-          <div className="bg-success p-2 rounded">
-            <Leaf className="text-white" size={20} />
-          </div>
-          <span className="fw-bold fs-4">EcoVida</span>
-        </CustomHashLink>
+    <nav className="navbar navbar-expand-lg sticky-top shadow-sm navbar-client">
+      <div className="container navbar-client-container">
+        {/* Bloque brand con fondo oscuro diagonal */}
+        <div className="navbar-brand-wrapper d-flex align-items-center">
+          <CustomHashLink
+            to="/"
+            className="navbar-brand d-flex align-items-center gap-2 m-0"
+          >
+            <div className="logo-badge d-flex align-items-center justify-content-center">
+              <Leaf size={20} />
+            </div>
+            <span className="brand-text">EcoVida</span>
+          </CustomHashLink>
+        </div>
 
         {/* Hamburguesa */}
         <button
@@ -76,7 +79,7 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Enlaces */}
+        {/* Menú de navegación */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto align-items-lg-center">
             {navItems.map((item) => (
@@ -121,10 +124,10 @@ const Navbar = () => {
             ))}
 
             {/* Zona derecha: auth */}
-            <li className="nav-item ms-lg-3 d-flex align-items-center gap-2">
+            <li className="nav-item ms-lg-3 d-flex align-items-center gap-2 auth-zone">
               {isAuthenticated ? (
                 <>
-                  <span className="text-light small d-none d-lg-inline">
+                  <span className="auth-greeting d-none d-lg-inline">
                     Hola,{" "}
                     <strong>
                       {user?.firstname || user?.email || "usuario"}
@@ -132,7 +135,7 @@ const Navbar = () => {
                   </span>
                   <button
                     type="button"
-                    className="btn btn-outline-light btn-sm"
+                    className="btn btn-outline-success btn-sm auth-btn"
                     onClick={logout}
                   >
                     Cerrar sesión
@@ -143,14 +146,14 @@ const Navbar = () => {
                   <Link
                     to="/login"
                     state={{ from: location }}
-                    className="btn btn-outline-success fw-medium text-white px-3 btn-sm"
+                    className="btn btn-outline-success btn-sm auth-btn"
                   >
                     Log In
                   </Link>
                   <Link
                     to="/register"
                     state={{ from: location }}
-                    className="btn btn-success fw-medium text-white px-3 btn-sm"
+                    className="btn btn-success btn-sm auth-btn"
                   >
                     Registrarse
                   </Link>

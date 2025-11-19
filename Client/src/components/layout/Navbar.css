@@ -1,36 +1,191 @@
-.navbar {
-  transition: background-color 0.3s ease;
-  background-color: salmon !important;
+/* ===========================
+ * NAVBAR ECO VIDA – Versión 3
+ * Fondo oscuro full height + logo más a la izq
+ * =========================== */
+
+:root {
+  --eco-bg: #e8e4db;
+  --eco-text-main: #2d2d2d;
+  --eco-text-muted: #5a5a5a;
+  --eco-btn-bg: #a8d584;
+  --eco-btn-bg-hover: #92c268;
+  --eco-btn-text: #2d2d2d;
+  --eco-accent: #6fa84a;
+  --eco-accent-soft: #a8d5a3;
 }
 
-.navbar .nav-link {
-  transition: color 0.2s ease;
+/* NAVBAR base */
+.navbar-client {
+  position: relative;
+  background-color: #f7f3ec; /* parte clara (zona derecha) */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  padding-block: 0.45rem;
+  overflow: hidden; /* para que el pseudo-element no se desborde */
+  z-index: 0;
 }
 
-.navbar .nav-link:hover {
-  color: #7be495 !important;
+/* === BLOQUE OSCURO FULL HEIGHT A LA IZQUIERDA === */
+.navbar-client::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0; /* 👈 ocupa TODO el alto del navbar */
+  left: 0;
+  width: 32%; /* ancho de la parte oscura (ajustable) */
+  min-width: 260px; /* asegura buen ancho en pantallas grandes */
+
+  background: #1f2527; /* color oscuro tipo sidebar */
+
+  /* borde diagonal hacia la parte clara */
+  clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+
+  z-index: -1; /* queda detrás del contenido */
 }
 
-.dropdown-menu {
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  transform-origin: top;
+/* Container: lo acercamos un poco más al borde izquierdo */
+.navbar-client-container {
+  position: relative;
+  z-index: 1;
+  padding-left: 0.75rem; /* menos padding para que el logo se vea más a la izq */
+  padding-right: 1.5rem;
 }
 
-.dropdown-menu.show {
-  display: block;
-  opacity: 1;
-  transform: scaleY(1);
+/* === BRAND / LOGO === */
+.navbar-brand-wrapper {
+  /* acercamos aún más el brand a la izquierda */
+  margin-left: -0.3rem;
+  padding-right: 2rem; /* separa más el brand del menú */
 }
 
-.dropdown-menu:not(.show) {
-  opacity: 0;
-  transform: scaleY(0.95);
+.navbar-brand {
+  text-decoration: none;
+  color: #fdfbf6 !important;
 }
 
-html {
-  scroll-behavior: smooth;
+/* Hojita: VERDE como en el sidebar, sin fondo */
+.logo-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--eco-accent); /* 👈 verde sidebar */
 }
 
-.navbar-nav .nav-link {
-  cursor: pointer;
+/* Texto del brand */
+.brand-text {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 1.2rem;
+  color: #fdfbf6 !important;
+}
+
+/* === NAVEGACIÓN (parte derecha) === */
+
+/* Empujamos el conjunto de links más a la derecha */
+.navbar-client .navbar-nav {
+  margin-left: 4.5rem; /* 👈 más separación con el logo que antes */
+}
+
+.navbar-client .nav-link {
+  color: var(--eco-text-main) !important;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.navbar-client .nav-link:hover {
+  background-color: rgba(168, 213, 132, 0.25);
+  color: var(--eco-text-main) !important;
+}
+
+.navbar-client .nav-link.active,
+.navbar-client .nav-link[aria-current="page"] {
+  background-color: var(--eco-accent-soft);
+  box-shadow: 0 0 0 1px rgba(168, 213, 132, 0.4);
+}
+
+/* Dropdown */
+.navbar-client .dropdown-menu {
+  border-radius: 0.75rem;
+  background-color: #fdfbf6;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+  padding: 0.35rem;
+  min-width: 220px;
+}
+
+/* === ZONA AUTH (derecha del todo) === */
+.auth-zone {
+  margin-left: 2.5rem !important; /* todavía más separación del menú */
+}
+
+.auth-btn {
+  border-radius: 999px !important;
+  padding: 0.35rem 1rem !important;
+  font-size: 0.85rem !important;
+}
+
+.navbar-client .btn-outline-success {
+  border-color: rgba(0, 0, 0, 0.15) !important;
+  color: var(--eco-text-main) !important;
+}
+
+.navbar-client .btn-outline-success:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.navbar-client .btn-success {
+  background-color: var(--eco-btn-bg) !important;
+  border-color: var(--eco-btn-bg) !important;
+  color: var(--eco-btn-text) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
+}
+
+.navbar-client .btn-success:hover {
+  background-color: var(--eco-btn-bg-hover) !important;
+  border-color: var(--eco-btn-bg-hover) !important;
+}
+
+/* === HAMBURGUESA MOBILE === */
+.navbar-toggler {
+  border-radius: 999px;
+  border-color: rgba(0, 0, 0, 0.2);
+  padding: 0.25rem 0.6rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.18rem rgba(168, 213, 132, 0.6);
+}
+
+.navbar-toggler-icon {
+  filter: invert(20%);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .navbar-client::before {
+    width: 55%; /* en mobile, que el bloque oscuro no coma todo */
+    min-width: 0;
+  }
+
+  .navbar-client-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .navbar-brand-wrapper {
+    margin-left: 0;
+    padding-right: 1rem;
+  }
+
+  .navbar-client .navbar-nav {
+    margin-left: 0;
+  }
+
+  .auth-zone {
+    margin-left: 0 !important;
+    margin-top: 0.5rem;
+  }
 }
