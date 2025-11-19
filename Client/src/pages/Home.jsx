@@ -5,6 +5,7 @@ import "./Home.css";
 import ComoFunciona from "../components/layout/HowDoesThisWork";
 import "../components/layout/HowDoesThisWork.css";
 import Impacto from "../components/Impact";
+import JoinEcolife from "../components/JoinEcoLife";
 
 const Home = () => {
   return (
@@ -38,6 +39,7 @@ const Home = () => {
           </div>
         </div>
         <Impacto />
+        <JoinEcolife />
       </section>
     </>
   );
