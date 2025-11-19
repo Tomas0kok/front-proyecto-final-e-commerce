@@ -1,11 +1,10 @@
 import Calendar from "../components/layout/Calendar";
 import videoFondo from "../assets/reciclaje.webm";
 import ComoFunciona from "../components/layout/HowDoesThisWork";
-import Impacto from "../components/Impact";
 import JoinEcolife from "../components/JoinEcoLife";
+import Impacto from "./Impacto";
 import "./Home.css";
 import "../components/layout/HowDoesThisWork.css";
-
 
 const Home = () => {
   return (
@@ -38,8 +37,8 @@ const Home = () => {
             <Calendar />
           </div>
         </div>
-        <Impacto />
         <JoinEcolife />
+        <Impacto />
       </section>
     </>
   );

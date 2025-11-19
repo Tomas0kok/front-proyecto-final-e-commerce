@@ -1,29 +1,50 @@
-// src/components/layout/Footer.jsx
-const Footer = () => {
-  return (
-    <footer className="bg-dark text-light text-center py-4 mt-auto">
-      <div className="container">
-        <h6 className="mb-2">E-Commerce</h6>
-        <p className="mb-1">Tu tienda de productos sustentables</p>
+import React from "react";
+import "./Footer.css";
 
-        <div className="d-flex justify-content-center gap-3 mb-2">
-          <a href="#" className="text-light">
-            Inicio
-          </a>
-          <a href="#" className="text-light">
-            Contacto
-          </a>
-          <a href="#" className="text-light">
-            Nosotros
-          </a>
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        {/* LOGO + DESCRIPCIÓN */}
+        <div className="footer-col">
+          <h3 className="footer-logo">EcoVida</h3>
+          <p className="footer-text">
+            Transformamos residuos en vida. Educación, reciclaje y tecnología
+            para un futuro sostenible.
+          </p>
         </div>
 
-        <p className="m-0">
-          &copy; {new Date().getFullYear()} Todos los derechos reservados.
+        {/* LINKS */}
+        <div className="footer-col">
+          <h4 className="footer-title">Enlaces</h4>
+          <ul className="footer-links">
+            <li>
+              <a href="/">Inicio</a>
+            </li>
+            <li>
+              <a href="/impacto">Impacto</a>
+            </li>
+            <li>
+              <a href="/tienda">Tienda</a>
+            </li>
+          </ul>
+        </div>
+
+        {/* CONTACTO */}
+        <div className="footer-col">
+          <p className="footer-text">Montevideo, Uruguay</p>
+          <p className="footer-text">ecovida@gmail.com</p>
+        </div>
+      </div>
+
+      {/* COPYRIGHT */}
+      <div className="footer-bottom">
+        <p>
+          © {new Date().getFullYear()} EcoVida. Todos los derechos reservados.
         </p>
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;
