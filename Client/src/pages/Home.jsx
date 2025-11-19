@@ -1,9 +1,11 @@
 import React from "react";
 import Calendar from "../components/layout/Calendar";
-import imagenReciclaje from "../assets/todosetransforma.jpg";
 import videoFondo from "../assets/reciclaje.webm";
 import "./Home.css";
-import imagenReciclaje2 from "../assets/RESIDUO2.jpg";
+import ComoFunciona from "../components/layout/HowDoesThisWork";
+import "../components/layout/HowDoesThisWork.css";
+import Impacto from "../components/Impact";
+import JoinEcolife from "../components/JoinEcoLife";
 
 const Home = () => {
   return (
@@ -19,27 +21,26 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 🔹 CONTENIDO PRINCIPAL */}
-      <main className="home-main">
-        {/* Columna izquierda */}
-        <section className="home-left">
-          <h1 className="home-title">AGENDÁ TU RECOLECCIÓN</h1>
+      {/* 🔹 BLOQUE DE CARDS */}
+      <ComoFunciona />
 
-          <p className="home-subtitle">
-            Seleccioná una fecha para reservar la recolección de residuos.
-          </p>
+      {/* 🔹 SECCIÓN CALENDARIO — TODO CENTRADO */}
+      <section className="calendar-section">
+        <h1 className="home-title">AGENDÁ TU RECOLECCIÓN</h1>
 
-          <Calendar />
-        </section>
+        <p className="home-subtitle">
+          Seleccioná una fecha para reservar la recolección de residuos.
+        </p>
 
-        {/* Columna derecha */}
-        <section className="home-right">
-          <img src={imagenReciclaje} alt="Reciclaje" className="home-image" />
-        </section>
-        <section className="home-right">
-          <img src={imagenReciclaje2} alt="Reciclaje" className="home-image" />
-        </section>
-      </main>
+        {/* EL CALENDARIO AHORA REALMENTE QUEDA CENTRADO */}
+        <div className="calendar-wrapper">
+          <div className="calendar-container">
+            <Calendar />
+          </div>
+        </div>
+        <Impacto />
+        <JoinEcolife />
+      </section>
     </>
   );
 };

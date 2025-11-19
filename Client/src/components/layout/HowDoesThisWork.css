@@ -1,0 +1,84 @@
+.como-section {
+  width: 100%;
+  padding: 60px 20px;
+  background: #ffffff;
+  text-align: center;
+  animation: fadeIn 1s ease;
+}
+
+.como-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #1c7c3a;
+  margin-bottom: 40px;
+}
+
+.como-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.como-card {
+  background: #f0f8f2;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  animation: fadeUp 1s forwards;
+}
+
+.como-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.como-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.como-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.como-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.icon {
+  font-size: 55px;
+  margin-bottom: 15px;
+}
+
+.como-card h3 {
+  font-size: 1.7rem;
+  color: #1c7c3a;
+  margin-bottom: 10px;
+}
+
+.como-card p {
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Animaciones */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
