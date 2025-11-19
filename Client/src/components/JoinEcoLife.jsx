@@ -1,5 +1,4 @@
-import React from "react";
-import "./JoinEcolife.css";
+import "./JoinEcoLife.css";
 import bannerTexture from "../assets/terceraimagen.avif";
 
 export default function JoinEcolife() {

@@ -1,6 +1,6 @@
 /* ===========================
- * NAVBAR ECO VIDA – Versión 3
- * Fondo oscuro full height + logo más a la izq
+ * NAVBAR ECO VIDA – V4
+ * Full height dark band, mejor mobile y z-index
  * =========================== */
 
 :root {
@@ -16,46 +16,44 @@
 
 /* NAVBAR base */
 .navbar-client {
-  position: relative;
-  background-color: #f7f3ec; /* parte clara (zona derecha) */
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: sticky !important;
+  top: 0;
+  background-color: #f7f3ec;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
   padding-block: 0.45rem;
-  overflow: hidden; /* para que el pseudo-element no se desborde */
-  z-index: 0;
+  overflow: visible;
+  z-index: 1020;
 }
-
-/* === BLOQUE OSCURO FULL HEIGHT A LA IZQUIERDA === */
+/* === BLOQUE OSCURO FULL HEIGHT A LA IZQUIERDA (DESKTOP) === */
 .navbar-client::before {
   content: "";
   position: absolute;
   top: 0;
-  bottom: 0; /* 👈 ocupa TODO el alto del navbar */
+  bottom: 0; /* ocupa TODO el alto de la navbar en desktop */
   left: 0;
-  width: 32%; /* ancho de la parte oscura (ajustable) */
-  min-width: 260px; /* asegura buen ancho en pantallas grandes */
+  width: 32%; /* ancho de la parte oscura */
+  min-width: 260px;
 
   background: #1f2527; /* color oscuro tipo sidebar */
 
   /* borde diagonal hacia la parte clara */
   clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
 
-  z-index: -1; /* queda detrás del contenido */
+  z-index: -1;
 }
 
-/* Container: lo acercamos un poco más al borde izquierdo */
+/* Container: logo más pegado a la izquierda, contenido más respirado */
 .navbar-client-container {
   position: relative;
   z-index: 1;
-  padding-left: 0.75rem; /* menos padding para que el logo se vea más a la izq */
+  padding-left: 0.75rem;
   padding-right: 1.5rem;
 }
 
 /* === BRAND / LOGO === */
 .navbar-brand-wrapper {
-  /* acercamos aún más el brand a la izquierda */
   margin-left: -0.3rem;
-  padding-right: 2rem; /* separa más el brand del menú */
+  padding-right: 2rem; /* separa brand del menú */
 }
 
 .navbar-brand {
@@ -68,10 +66,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--eco-accent); /* 👈 verde sidebar */
+  color: var(--eco-accent);
 }
 
-/* Texto del brand */
 .brand-text {
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -83,7 +80,7 @@
 
 /* Empujamos el conjunto de links más a la derecha */
 .navbar-client .navbar-nav {
-  margin-left: 4.5rem; /* 👈 más separación con el logo que antes */
+  margin-left: 4.5rem;
 }
 
 .navbar-client .nav-link {
@@ -106,7 +103,7 @@
   box-shadow: 0 0 0 1px rgba(168, 213, 132, 0.4);
 }
 
-/* Dropdown */
+/* Dropdown de los items del menú */
 .navbar-client .dropdown-menu {
   border-radius: 0.75rem;
   background-color: #fdfbf6;
@@ -114,11 +111,28 @@
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
   padding: 0.35rem;
   min-width: 220px;
+  z-index: 1050; /* para que NO queden debajo de la página */
+}
+
+/* Items del dropdown */
+.navbar-client .dropdown-item {
+  border-radius: 0.55rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  color: var(--eco-text-main);
+  transition: background-color 0.14s ease, color 0.14s ease,
+    transform 0.12s ease;
+}
+
+.navbar-client .dropdown-item:hover {
+  background-color: rgba(168, 213, 132, 0.24);
+  color: var(--eco-text-main);
+  transform: translateX(2px);
 }
 
 /* === ZONA AUTH (derecha del todo) === */
 .auth-zone {
-  margin-left: 2.5rem !important; /* todavía más separación del menú */
+  margin-left: 2.5rem !important;
 }
 
 .auth-btn {
@@ -148,26 +162,61 @@
   border-color: var(--eco-btn-bg-hover) !important;
 }
 
-/* === HAMBURGUESA MOBILE === */
+/* === HAMBURGUESA (TOGGLER) === */
 .navbar-toggler {
   border-radius: 999px;
-  border-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.18);
   padding: 0.25rem 0.6rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none !important;
 }
 
-.navbar-toggler:focus {
-  box-shadow: 0 0 0 0.18rem rgba(168, 213, 132, 0.6);
-}
-
+/* Icono */
 .navbar-toggler-icon {
   filter: invert(20%);
 }
 
-/* Responsive */
+/* Sin aro grueso, solo un cambio sutil de color en focus/active */
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: rgba(168, 213, 132, 0.7) !important;
+  background-color: rgba(255, 255, 255, 0.45);
+}
+
+/* Por si algún navegador mete focus raro */
+.navbar-toggler:focus:not(:focus-visible) {
+  box-shadow: none !important;
+}
+
+/* ===========================
+ * MOBILE / TABLET
+ * =========================== */
+
 @media (max-width: 992px) {
+  .navbar-client {
+    position: sticky !important;
+    top: 0;
+    background-color: #f7f3ec;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    padding-block: 0.45rem;
+    overflow: visible;
+    z-index: 1020;
+  }
   .navbar-client::before {
-    width: 55%; /* en mobile, que el bloque oscuro no coma todo */
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    height: 56px;
+    left: 0;
+    width: 45%;
     min-width: 0;
+    background: #1f2527;
+    clip-path: polygon(0 0, 100% 0, 82% 100%, 0 100%);
+    z-index: -1;
   }
 
   .navbar-client-container {
@@ -180,12 +229,48 @@
     padding-right: 1rem;
   }
 
+  .navbar-client .navbar-collapse {
+    background-color: #f7f3ec;
+    padding: 0.75rem 0 0.5rem;
+    margin-top: 0.75rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
   .navbar-client .navbar-nav {
     margin-left: 0;
+    align-items: stretch;
+  }
+
+  .navbar-client .nav-link {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.15rem;
   }
 
   .auth-zone {
     margin-left: 0 !important;
     margin-top: 0.5rem;
+    justify-content: center;
+  }
+
+  .auth-btn {
+    width: auto;
+  }
+
+  /* Ocultar los submenús en mobile */
+  .navbar-client .dropdown-menu {
+    display: none !important;
+  }
+
+  /* Quitar el caret de "dropdown" en los links, para que parezcan links normales */
+  .navbar-client .nav-item.dropdown .nav-link.dropdown-toggle::after {
+    display: none;
+  }
+}
+/* Laptops tipo 1024px */
+@media (min-width: 992px) and (max-width: 1100px) {
+  .navbar-client::before {
+    width: 26%; /* 👈 probá este valor; si querés menos, bajalo a 24–25 */
+    min-width: 220px;
   }
 }

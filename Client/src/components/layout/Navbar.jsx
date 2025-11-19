@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Leaf } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import CustomHashLink from "../CustomHashLink";
@@ -8,6 +8,7 @@ import "../../ecoTheme.css";
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
 
@@ -50,14 +51,35 @@ const Navbar = () => {
     },
   ];
 
+  // Toggle del menú en mobile (React controla el collapse)
+  const handleToggle = () => {
+    setMenuOpen((prev) => !prev);
+  };
+
+  // Cerrar menú al hacer click en cualquier link del navbar
+  const handleNavClick = () => {
+    setMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  // Cerrar menú cuando cambia la ruta (pathname o hash)
+  useEffect(() => {
+    setMenuOpen(false);
+    setActiveDropdown(null);
+  }, [location.pathname, location.hash]);
+
+  const isLoggedIn =
+    typeof isAuthenticated === "boolean" ? isAuthenticated : !!user;
+
   return (
-    <nav className="navbar navbar-expand-lg sticky-top shadow-sm navbar-client">
+    <nav className="navbar navbar-expand-lg navbar-client">
       <div className="container navbar-client-container">
-        {/* Bloque brand con fondo oscuro diagonal */}
+        {/* Brand */}
         <div className="navbar-brand-wrapper d-flex align-items-center">
           <CustomHashLink
             to="/"
             className="navbar-brand d-flex align-items-center gap-2 m-0"
+            onClick={handleNavClick}
           >
             <div className="logo-badge d-flex align-items-center justify-content-center">
               <Leaf size={20} />
@@ -66,21 +88,23 @@ const Navbar = () => {
           </CustomHashLink>
         </div>
 
-        {/* Hamburguesa */}
+        {/* Hamburguesa controlada por React (sin data-bs-*) */}
         <button
-          className="navbar-toggler"
+          className={`navbar-toggler ${menuOpen ? "" : "collapsed"}`}
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={menuOpen}
           aria-label="Toggle navigation"
+          onClick={handleToggle}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        {/* Menú de navegación */}
-        <div className="collapse navbar-collapse" id="navbarNav">
+        {/* Menú de navegación controlado por menuOpen */}
+        <div
+          className={`collapse navbar-collapse ${menuOpen ? "show" : ""}`}
+          id="navbarNav"
+        >
           <ul className="navbar-nav ms-auto align-items-lg-center">
             {navItems.map((item) => (
               <li
@@ -96,10 +120,12 @@ const Navbar = () => {
                   className={`nav-link ${
                     item.dropdown ? "dropdown-toggle" : ""
                   }`}
+                  onClick={handleNavClick}
                 >
                   {item.label}
                 </CustomHashLink>
 
+                {/* Dropdown solo en desktop: en mobile lo ocultamos por CSS */}
                 {item.dropdown && (
                   <ul
                     className={`dropdown-menu ${
@@ -112,7 +138,7 @@ const Navbar = () => {
                         <CustomHashLink
                           to={dropItem.path}
                           className="dropdown-item"
-                          onClick={() => setActiveDropdown(null)}
+                          onClick={handleNavClick}
                         >
                           {dropItem.label}
                         </CustomHashLink>
@@ -125,7 +151,7 @@ const Navbar = () => {
 
             {/* Zona derecha: auth */}
             <li className="nav-item ms-lg-3 d-flex align-items-center gap-2 auth-zone">
-              {isAuthenticated ? (
+              {isLoggedIn ? (
                 <>
                   <span className="auth-greeting d-none d-lg-inline">
                     Hola,{" "}
@@ -136,7 +162,10 @@ const Navbar = () => {
                   <button
                     type="button"
                     className="btn btn-outline-success btn-sm auth-btn"
-                    onClick={logout}
+                    onClick={() => {
+                      logout();
+                      handleNavClick();
+                    }}
                   >
                     Cerrar sesión
                   </button>
@@ -147,6 +176,7 @@ const Navbar = () => {
                     to="/login"
                     state={{ from: location }}
                     className="btn btn-outline-success btn-sm auth-btn"
+                    onClick={handleNavClick}
                   >
                     Log In
                   </Link>
@@ -154,6 +184,7 @@ const Navbar = () => {
                     to="/register"
                     state={{ from: location }}
                     className="btn btn-success btn-sm auth-btn"
+                    onClick={handleNavClick}
                   >
                     Registrarse
                   </Link>
