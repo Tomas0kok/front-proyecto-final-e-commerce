@@ -1,0 +1,68 @@
+.join-eco-box {
+  width: 100%;
+  padding: 90px 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Color base detrás de la textura */
+  background-color: #b7e56b; /* verde suave como el ejemplo */
+
+  border-radius: 20px 20px 20px 20px; /* igual que la imagen */
+  margin: 0;
+  margin-top: 40px; /* opcional */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  animation: fadeIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+.join-eco-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  color: #e2dddd;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+.join-eco-button {
+  background: #209748;
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 999px; /* botón súper redondo */
+  cursor: pointer;
+  transition: 0.2s ease;
+  min-width: 260px; /* igual a la referencia */
+}
+
+.join-eco-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Para que pegue al footer sin espacios */
+body,
+html,
+#root {
+  margin: 0;
+  padding: 0;
+}

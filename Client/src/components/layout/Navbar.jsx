@@ -57,7 +57,7 @@ const Navbar = () => {
           <div className="bg-success p-2 rounded">
             <Leaf className="text-white" size={20} />
           </div>
-          <span className="fw-bold fs-4">EcoVida</span>
+          <span className="fw-bold fs-4">EcoLife</span>
         </CustomHashLink>
 
         {/* Hamburguesa */}
