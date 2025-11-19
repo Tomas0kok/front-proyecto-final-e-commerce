@@ -7,6 +7,8 @@ import FreeContent from "../pages/FreeContent";
 import Store from "../pages/Store";
 import Home from "../pages/Home";
 import HomeStore from "../pages/HomeStore";
+import FormCrash from "../pages/FormCrash.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,8 +34,14 @@ const router = createBrowserRouter([
         path: "/HomeStore",
         element: <HomeStore />,
       },
+      {
+        path: "/formcrash",
+        element: <FormCrash />,
+      },
     ],
   },
+
+  // Rutas fuera del layout
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
 ]);
