@@ -1,5 +1,6 @@
-import "./JoinEcoLife.css";
 import bannerTexture from "../assets/terceraimagen.avif";
+import { Link } from "react-router-dom";
+import "./JoinEcoLife.css";
 
 export default function JoinEcolife() {
   return (
@@ -8,7 +9,9 @@ export default function JoinEcolife() {
       style={{ backgroundImage: `url(${bannerTexture})` }}
     >
       <h1 className="join-eco-title">SUMATE A ECOLIFE</h1>
-      <button className="join-eco-button">Suscribite</button>
+      <Link to={"/servicios#suscripciones"} className="join-eco-button">
+        Suscribite
+      </Link>
     </section>
   );
 }

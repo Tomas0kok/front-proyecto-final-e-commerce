@@ -73,7 +73,34 @@ html {
   font-size: clamp(16px, 2.3vw, 23px);
   font-weight: 200;
   color: white;
-  margin-left: clamp(-4px, -0.6vw, -7px); /* el negativo también escala */
+  margin-left: clamp(-4px, -0.6vw, -7px);
+}
+
+h1,
+h2 {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  color: var(--eco-text-main);
+  line-height: 1.1;
+}
+
+/* Subtítulos */
+h3,
+h4,
+h5 {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  color: var(--eco-text-main);
+  line-height: 1.2;
+}
+
+/* Texto general */
+p,
+span,
+li,
+button {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
 }
 
 /* Botón primario (se usa en Admin y en Cliente) */

@@ -31,21 +31,24 @@
 }
 
 .join-eco-button {
-  background: #209748;
-  color: white;
-  border: none;
+  background-color: var(--eco-btn-bg);
+  border-color: var(--eco-btn-bg);
+  color: var(--eco-btn-text);
   padding: 18px 40px;
   font-size: 1.2rem;
   font-weight: 700;
-  border-radius: 999px; /* botón súper redondo */
+  text-decoration: none;
+  border-radius: 999px;
   cursor: pointer;
   transition: 0.2s ease;
-  min-width: 260px; /* igual a la referencia */
+  min-width: 260px;
 }
 
-.join-eco-button:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+.join-eco-button:hover,
+.join-eco-button:focus {
+  background-color: var(--eco-btn-bg-hover);
+  border-color: var(--eco-btn-bg-hover);
+  color: var(--eco-btn-text);
 }
 
 @keyframes fadeIn {

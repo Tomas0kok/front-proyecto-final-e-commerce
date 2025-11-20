@@ -1,8 +1,5 @@
-// src/components/Impact.jsx
-import React from "react";
-import {Accordion} from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./Impacto.css"; // opcional si querés darle estilos propios
+import { Accordion } from "react-bootstrap";
+import "./Impacto.css"; 
 
 const Impacto = () => {
   return (

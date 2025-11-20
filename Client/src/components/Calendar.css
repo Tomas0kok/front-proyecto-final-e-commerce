@@ -1,12 +1,21 @@
-/* 🔹 Título del mes */
+.calendar-container {
+  border-color: #8fcc75 !important;
+}
+
 .fc .fc-toolbar-title {
-  color: #2e7d32;
+  color: #90c47a;
   font-weight: bold;
 }
 
-/* 🔹 Botones superiores (hoy, siguiente, anterior) */
+.fc .fc-toolbar.fc-header-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
 .fc .fc-button {
-  background-color: #2e7d32;
+  background-color: #90c47a;
   border: none;
   color: white;
   font-weight: 500;
@@ -14,28 +23,24 @@
 }
 
 .fc .fc-button:hover {
-  background-color: #256928;
+  background-color: #8fcc75;
 }
 
-/* 🔹 Día actual (resaltado) */
 .fc .fc-daygrid-day.fc-day-today {
   background-color: rgba(46, 125, 50, 0.15);
 }
 
-/* 🔹 Encabezados (Lunes, Martes, etc.) */
 .fc .fc-col-header-cell-cushion {
   color: #2e7d32;
   font-weight: bold;
 }
 
-/* 🔹 Números de los días */
 .fc .fc-daygrid-day-number {
   color: #2e7d32 !important;
   font-weight: 500;
   text-decoration: none;
 }
 
-/* 🔹 Bordes y fondos */
 .fc-theme-standard td,
 .fc-theme-standard th {
   border-color: #d9e2da;
@@ -44,4 +49,28 @@
 .fc .fc-scrollgrid {
   border-radius: 10px;
   overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .fc .fc-toolbar.fc-header-toolbar {
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .fc .fc-toolbar-chunk {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fc .fc-toolbar-title {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .fc .fc-button {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    margin: 0 0.15rem;
+  }
 }

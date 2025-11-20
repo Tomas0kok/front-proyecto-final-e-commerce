@@ -1,4 +1,3 @@
-import React from "react";
 import "./Footer.css";
 
 function Footer() {
@@ -7,7 +6,10 @@ function Footer() {
       <div className="footer-container">
         {/* LOGO + DESCRIPCIÓN */}
         <div className="footer-col">
-          <h3 className="footer-logo">EcoVida</h3>
+          <div className="footer-logo">
+            <span className="logo-eco-font">Eco</span>
+            <span className="logo-life-font">life</span>
+          </div>
           <p className="footer-text">
             Transformamos residuos en vida. Educación, reciclaje y tecnología
             para un futuro sostenible.

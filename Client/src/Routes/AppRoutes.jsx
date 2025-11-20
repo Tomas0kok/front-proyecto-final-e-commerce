@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -8,7 +8,7 @@ import Store from "../pages/Store";
 import Home from "../pages/Home";
 import HomeStore from "../pages/HomeStore";
 import FormCrash from "../pages/FormCrash.jsx";
-import Impacto from "../components/Impact.jsx";
+import Impacto from "../pages/Impact.jsx";
 
 const router = createBrowserRouter([
   {
@@ -47,8 +47,8 @@ const router = createBrowserRouter([
   },
 
   // Rutas fuera del layout
-  {path: "/login", element: <Login />},
-  {path: "/register", element: <Register />},
+  { path: "/login", element: <Login /> },
+  { path: "/register", element: <Register /> },
 ]);
 
 export default router;

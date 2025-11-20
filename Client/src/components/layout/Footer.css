@@ -28,11 +28,12 @@
 }
 
 /* LOGO */
-.footer-logo {
-  font-size: 26px;
-  font-weight: 700;
-  color: #90c47a; /* verde ecológico */
-  margin-bottom: 10px;
+.footer-logo .logo-life-font {
+  margin-left: 2px !important;
+  color: #90c47a;
+}
+.footer-logo .logo-eco-font {
+  color: #90c47a;
 }
 
 /* DESCRIPCIÓN */

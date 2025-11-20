@@ -1,10 +1,8 @@
 import Calendar from "../components/Calendar";
 import videoFondo from "../assets/reciclaje.webm";
 import ComoFunciona from "../components/HowDoesThisWork";
-import Impacto from "../components/Impact";
-import ComoFunciona from "../components/layout/HowDoesThisWork";
 import JoinEcolife from "../components/JoinEcoLife";
-import Impacto from "./Impacto";
+import Impacto from "../components/Impacto";
 import "./Home.css";
 
 const Home = () => {
@@ -33,14 +31,14 @@ const Home = () => {
         </p>
 
         {/* EL CALENDARIO AHORA REALMENTE QUEDA CENTRADO */}
-        <div className="calendar-wrapper">
+        <div className="calendar-wrapper mb-5">
           <div className="calendar-container">
             <Calendar />
           </div>
         </div>
         <JoinEcolife />
-        <Impacto />
       </section>
+      <Impacto />
     </>
   );
 };
