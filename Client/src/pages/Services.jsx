@@ -323,7 +323,7 @@ const Services = () => {
                 <div key={course.id} className="col-md-4">
                   <article className="card services-service-card h-100">
                     <div className="card-body">
-                      <div className="services-service-icon-pill">
+                      <div className="services-service-icon-pill-cursos">
                         <GraduationCap size={20} />
                       </div>
                       <h5 className="services-service-title fw-semibold">
@@ -349,7 +349,7 @@ const Services = () => {
                           </span>
                         </div>
                       </div>
-                      <button className="btn services-service-button services-service-button--primary w-100 mt-3">
+                      <button className="btn services-service-button services-service-button--primary-cursos w-100 mt-3">
                         Inscribirse
                       </button>
                     </div>
@@ -396,7 +396,7 @@ const Services = () => {
                 <div key={workshop.id} className="col-md-4">
                   <article className="card services-service-card h-100">
                     <div className="card-body">
-                      <div className="services-service-icon-pill services-service-icon-pill--workshop">
+                      <div className="services-service-icon-pill-talleres services-service-icon-pill--workshop">
                         <Calendar size={20} />
                       </div>
                       <h5 className="services-service-title fw-semibold">
@@ -432,7 +432,7 @@ const Services = () => {
                         </div>
                       </div>
 
-                      <button className="btn services-service-button services-service-button--primary w-100 mt-3">
+                      <button className="btn services-service-button services-service-button--primary-talleres w-100 mt-3">
                         Reservar
                       </button>
                     </div>

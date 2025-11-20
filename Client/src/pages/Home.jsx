@@ -1,11 +1,9 @@
-import Calendar from "../components/layout/Calendar";
+import Calendar from "../components/Calendar";
 import videoFondo from "../assets/reciclaje.webm";
-import ComoFunciona from "../components/layout/HowDoesThisWork";
+import ComoFunciona from "../components/HowDoesThisWork";
 import Impacto from "../components/Impact";
 import JoinEcolife from "../components/JoinEcoLife";
 import "./Home.css";
-import "../components/layout/HowDoesThisWork.css";
-
 
 const Home = () => {
   return (

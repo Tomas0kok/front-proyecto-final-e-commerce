@@ -7,6 +7,9 @@
 
 /* Paleta eco reutilizable en todo el proyecto */
 :root {
+  --eco-logo-font: "Merienda", serif;
+  --life-logo-font: "Merienda", cursive;
+
   --eco-bg: #e8e4db;
   --eco-text-main: #2d2d2d;
   --eco-text-muted: #5a5a5a;
@@ -57,6 +60,22 @@ html {
 
 /* --------- Overrides Bootstrap base --------- */
 
+.logo-eco-font {
+  font-family: var(--eco-logo-font);
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 800;
+  color: white;
+  letter-spacing: -1px;
+}
+
+.logo-life-font {
+  font-family: var(--life-logo-font);
+  font-size: clamp(16px, 2.3vw, 23px);
+  font-weight: 200;
+  color: white;
+  margin-left: clamp(-4px, -0.6vw, -7px); /* el negativo también escala */
+}
+
 /* Botón primario (se usa en Admin y en Cliente) */
 .btn-primary {
   background-color: var(--eco-btn-bg);
@@ -91,4 +110,3 @@ a {
 a:hover {
   color: var(--eco-accent-hover);
 }
-

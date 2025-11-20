@@ -9,7 +9,7 @@
 .como-title {
   font-size: 2.8rem;
   font-weight: bold;
-  color: #1c7c3a;
+  color: var(--eco-accent);
   margin-bottom: 40px;
 }
 
@@ -46,14 +46,13 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-.icon {
-  font-size: 55px;
+.icon-home {
   margin-bottom: 15px;
 }
 
 .como-card h3 {
   font-size: 1.7rem;
-  color: #1c7c3a;
+  color: var(--eco-accent);
   margin-bottom: 10px;
 }
 

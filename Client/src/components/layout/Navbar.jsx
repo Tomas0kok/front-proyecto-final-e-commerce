@@ -72,9 +72,10 @@ const Navbar = () => {
             onClick={handleNavClick}
           >
             <div className="logo-badge d-flex align-items-center justify-content-center">
-              <Leaf size={20} />
+              <Leaf size={35} />
             </div>
-            <span className="brand-text">EcoVida</span>
+            <span className="logo-eco-font">Eco</span>
+            <span className="logo-life-font">life</span>
           </CustomHashLink>
         </div>
 
