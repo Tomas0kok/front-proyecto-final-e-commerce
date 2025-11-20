@@ -3,13 +3,11 @@ import "./Impact.css";
 
 const Impact = () => {
   return (
-    <div className="impact-container container my-5">
-      <h2 className="impact-title text-center mb-4">
-        Impacto & Sobre Nosotros
-      </h2>
+    <div className="impact-container">
+      <h2 className="impact-title">🍃 IMPACTO Y SOBRE NOSOTROS 🍃</h2>
 
       {/* SOBRE NOSOTROS */}
-      <section className="impact-section mb-5">
+      <section className="impact-section">
         <h3 className="impact-subtitle">Sobre Nosotros</h3>
         <p className="impact-text">
           Somos un equipo comprometido con la educación ambiental, la tecnología
@@ -37,30 +35,24 @@ const Impact = () => {
           justo.
         </p>
 
-        <div className="impact-cards row g-4 mt-4">
-          <div className="col-md-4">
-            <div className="impact-card">
-              <h4 className="impact-card-number">1200+ kg</h4>
-              <p className="impact-card-text">Residuos recuperados</p>
-            </div>
+        <div className="impact-cards">
+          <div className="impact-card">
+            <h4 className="impact-card-number">1200+ kg</h4>
+            <p className="impact-card-text">Residuos recuperados</p>
           </div>
 
-          <div className="col-md-4">
-            <div className="impact-card">
-              <h4 className="impact-card-number">30+ talleres</h4>
-              <p className="impact-card-text">
-                Educación ambiental comunitaria
-              </p>
-            </div>
+          <div className="impact-card">
+            <h4 className="impact-card-number">30+ talleres</h4>
+            <p className="impact-card-text">
+              Educación ambiental comunitaria
+            </p>
           </div>
 
-          <div className="col-md-4">
-            <div className="impact-card">
-              <h4 className="impact-card-number">Tecnología verde</h4>
-              <p className="impact-card-text">
-                Herramientas digitales para reciclar mejor
-              </p>
-            </div>
+          <div className="impact-card">
+            <h4 className="impact-card-number">Tecnología verde</h4>
+            <p className="impact-card-text">
+              Herramientas digitales para reciclar mejor
+            </p>
           </div>
         </div>
       </section>
