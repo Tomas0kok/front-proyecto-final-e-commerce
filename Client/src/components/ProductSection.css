@@ -26,7 +26,7 @@
 }
 
 .section-title-cards::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   left: 50%;
@@ -55,7 +55,7 @@
    ========================================== */
 
 .product-card-home {
-  background: white;
+  background: rgb(243, 232, 232);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -186,7 +186,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.75); /* Fondo oscuro semitransparente */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -196,19 +196,21 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .modal-content {
-  background: white;
   border-radius: 20px;
   max-width: 1000px;
   width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  justify-content: start;
+  max-height: 70vh;
+  box-shadow: 0 20px 60px rgba(73, 100, 28, 0.484);
   animation: slideUp 0.3s ease;
 }
 
@@ -228,7 +230,7 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  background: rgba(255, 255, 255, 0.9);
+  background: #604305(255, 255, 255, 0.9);
   border: none;
   width: 40px;
   height: 40px;
@@ -242,7 +244,7 @@
   align-items: center;
   justify-content: center;
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .modal-close:hover {
@@ -255,7 +257,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
-  padding: 40px;
+  padding: 20px;
+  background-color: rgb(199, 192, 170);
+  border: #604305 2px solid;
+  border-radius: 20px;
+  height: 80%;
 }
 
 /* Imagen del Modal */
@@ -280,7 +286,7 @@
 
 .modal-title {
   font-size: 2rem;
-  color: #2d3748;
+  color: #604305;
   font-weight: 700;
   margin: 10px 0 0 0;
   line-height: 1.2;
@@ -288,7 +294,7 @@
 
 .modal-price {
   font-size: 2.5rem;
-  color: #4caf50;
+  color: #4b8c4d;
   font-weight: 700;
   margin: 0;
 }
@@ -296,19 +302,19 @@
 /* Descripción Detallada */
 .modal-description {
   padding: 20px 0;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
+  border-top: 1px solid #604305;
+  border-bottom: 1px solid #604305;
 }
 
 .modal-description h3 {
   font-size: 1.2rem;
-  color: #2d3748;
+  color: #604305;
   margin: 0 0 12px 0;
   font-weight: 600;
 }
 
 .modal-description p {
-  color: #718096;
+  color: #604305;
   line-height: 1.7;
   font-size: 1rem;
   margin: 0;
@@ -321,7 +327,7 @@
 
 .modal-features h3 {
   font-size: 1.2rem;
-  color: #2d3748;
+  color: #604305;
   margin: 0 0 16px 0;
   font-weight: 600;
 }
@@ -333,7 +339,7 @@
 }
 
 .modal-features li {
-  color: #4a5568;
+  color: #604305;
   padding: 10px 0;
   font-size: 1rem;
   display: flex;
@@ -342,15 +348,15 @@
 }
 
 .modal-features li::before {
-  content: '✓';
-  color: #4caf50;
+  content: "✓";
+  color: #4b8c4d;
   font-weight: bold;
   font-size: 1.2rem;
 }
 
 /* Botón Modal */
 .btn-add-cart-modal {
-  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  background: linear-gradient(135deg, #4b8c4d, #66bb6a);
   color: white;
   border: none;
   padding: 16px 32px;
@@ -366,7 +372,7 @@
 }
 
 .btn-add-cart-modal:hover {
-  background: linear-gradient(135deg, #388e3c, #4caf50);
+  background: linear-gradient(135deg, #4b8c4d, #4caf50);
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
 }
@@ -385,7 +391,7 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
-  
+
   .section-title-cards {
     font-size: 2rem;
   }
@@ -396,53 +402,53 @@
   .products-section-home {
     padding: 40px 16px;
   }
-  
+
   .cards-home-grid-home {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .section-title-cards {
     font-size: 1.75rem;
     margin-bottom: 30px;
   }
-  
+
   .card-image-wrapper {
     height: 220px;
   }
-  
+
   .product-title-home {
     font-size: 1.25rem;
   }
-  
+
   .card-footer-home {
     flex-direction: column;
     gap: 12px;
   }
-  
+
   .btn-view-more-home {
     width: 100%;
   }
-  
+
   /* Modal Responsive */
   .modal-body {
     grid-template-columns: 1fr;
     gap: 30px;
     padding: 30px 20px;
   }
-  
+
   .modal-image {
     height: 350px;
   }
-  
+
   .modal-title {
     font-size: 1.75rem;
   }
-  
+
   .modal-price {
     font-size: 2rem;
   }
-  
+
   .modal-close {
     top: 15px;
     right: 15px;
@@ -457,32 +463,32 @@
   .section-title-cards {
     font-size: 1.5rem;
   }
-  
+
   .card-content-home {
     padding: 20px;
   }
-  
+
   .modal-overlay {
     padding: 10px;
   }
-  
+
   .modal-content {
     border-radius: 16px;
   }
-  
+
   .modal-body {
     padding: 20px 15px;
     gap: 20px;
   }
-  
+
   .modal-image {
     height: 280px;
   }
-  
+
   .modal-title {
     font-size: 1.5rem;
   }
-  
+
   .modal-price {
     font-size: 1.75rem;
   }
