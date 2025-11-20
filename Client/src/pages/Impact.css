@@ -1,66 +1,118 @@
 .impact-container {
-  background: #f5f3ef; /* beige suave */
-  padding: 40px;
-  border-radius: 14px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-}
-
-.impact-title {
-  font-weight: 700;
-  color: #1f2e25; /* verde oscuro del navbar */
-}
-
-.impact-subtitle {
-  font-weight: 600;
-  color: #1f2e25;
-  margin-bottom: 15px;
-}
-
-.impact-text {
-  color: #333;
-  line-height: 1.6;
-  margin-bottom: 12px;
-  font-size: 1rem;
-}
-
-.impact-cards {
-  margin-top: 25px;
-}
-
-.impact-card {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-}
-
-.impact-card:hover {
-  transform: translateY(-5px);
-}
-
-.impact-card-number {
-  color: #1f2e25;
-  font-size: 1.6rem;
-  font-weight: 700;
-}
-
-.impact-card-text {
-  color: #444;
-  margin-top: 8px;
-  font-size: 0.95rem;
-}
-.impact-container {
+  width: 100%;
+  padding: 60px 20px;
   background-image: url("../assets/papel-suave.png");
   background-size: cover;
   background-position: center;
   opacity: 0.97;
 }
+
+.impact-title {
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: var(--eco-accent);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.impact-section {
+  max-width: 1100px;
+  margin: 0 auto 50px auto;
+  text-align: center;
+}
+
+.impact-subtitle {
+  font-weight: 600;
+  font-size: 1.7rem;
+  color: var(--eco-accent);
+  margin-bottom: 15px;
+}
+
+.impact-text {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.impact-cards {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.impact-card {    
+  background: #f0f8f2;
+  padding: 50px 10px;
+  border-radius: 18px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  animation: fadeUp 1s forwards;
+  text-align: center;
+  min-height: 200px;
+}
+
+.impact-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.impact-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.impact-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.impact-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.impact-card-number {
+  color: var(--eco-accent);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.impact-card-text {
+  color: #555;
+  margin-top: 10px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
 .impact-divider {
   width: 80px;
   height: 4px;
-  background: #1f2e25;
+  background: var(--eco-accent);
   border-radius: 4px;
   margin: 30px auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .impact-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
