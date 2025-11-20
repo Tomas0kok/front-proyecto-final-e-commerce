@@ -104,15 +104,14 @@ const FreeContent = () => {
     <main className="free-content-page">
       {/* HERO */}
       <section className="free-content-hero">
-        <div className="container">
-          <div className="free-content-hero-inner">
-            <div>
-              <h1 className="free-content-hero-title">Contenido gratuito</h1>
-              <p className="free-content-hero-subtitle">
-                Blog, guías descargables y videos para acompañar tu proyecto de
-                sostenibilidad.
-              </p>
-            </div>
+        <div className="container text-center">
+          <div>
+            <p className="free-content-hero-eyebrow">Contenido extra</p>
+            <h1 className="free-content-hero-title">Contenido gratuito</h1>
+            <p className="free-content-hero-subtitle">
+              Blog, guías descargables y videos para acompañar tu proyecto de
+              sostenibilidad.
+            </p>
           </div>
         </div>
       </section>
@@ -220,7 +219,7 @@ const FreeContent = () => {
                   {/* Card igual que Admin */}
                   <div className="card border-0 shadow-sm h-100">
                     <div className="card-body">
-                      <div className="d-flex align-items-center justify-content-center bg-light rounded mb-3 p-3">
+                      <div className="guia-detail-icon">
                         <Download size={28} className="text-primary" />
                       </div>
                       <h6 className="fw-semibold">{guide.title}</h6>
@@ -282,22 +281,26 @@ const FreeContent = () => {
             ) : (
               videos.map((video) => (
                 <div className="col-md-6" key={video.id}>
-                  <div className="card free-content-card h-100">
-                    <div className="free-content-video-thumb">
-                      <div className="free-content-video-play">
-                        <div className="free-content-video-play-inner" />
+                  <div className="card free-content-card h-200">
+                    <div className=" video-card-body">
+                      <div className="free-content-video-thumb">
+                        <div className="free-content-video-play">
+                          <div className="free-content-video-play-inner" />
+                        </div>
+                        {video.duration && (
+                          <span className="free-content-video-duration">
+                            {video.duration}
+                          </span>
+                        )}
                       </div>
-                      {video.duration && (
-                        <span className="free-content-video-duration">
-                          {video.duration}
-                        </span>
-                      )}
-                    </div>
-                    <div className="card-body">
-                      <h5 className="free-content-card-title">{video.title}</h5>
-                      <p className="free-content-meta mb-0">
-                        {video.views} visualizaciones
-                      </p>
+                      <div className="card-body">
+                        <h5 className="free-content-card-title">
+                          {video.title}
+                        </h5>
+                        <p className="free-content-meta mb-0">
+                          {video.views} visualizaciones
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -327,7 +330,7 @@ const FreeContent = () => {
                 className="form-control free-content-input"
                 placeholder="tu@email.com"
               />
-              <button type="submit" className="btn btn-success fw-semibold">
+              <button type="submit" className="btn btn-primary fw-semibold">
                 Suscribirse
               </button>
             </form>

@@ -137,3 +137,9 @@ a {
 a:hover {
   color: var(--eco-accent-hover);
 }
+
+.form-control:focus {
+  border-color: var(--eco-accent);
+  box-shadow: 0 0 0 0.16rem rgba(111, 168, 74, 0.35);
+  outline: none;
+}

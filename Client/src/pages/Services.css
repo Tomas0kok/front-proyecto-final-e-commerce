@@ -11,12 +11,7 @@
 
 .services-page .services-hero {
   padding: 3rem 0 2.5rem;
-  background: linear-gradient(
-    180deg,
-    #c5e1ac 0%,
-    /* más verde y notorio */ #d8edbf 45%,
-    #e7f3cf 100%
-  );
+  background: linear-gradient(180deg, #c5e1ac 0%, #d8edbf 45%, #e7f3cf 100%);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 

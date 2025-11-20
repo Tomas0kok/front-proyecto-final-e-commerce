@@ -3,95 +3,45 @@
  * Estilos basados en ecoTheme (paleta Inter / EcoVida)
  * =========================== */
 
-.free-content-page {
-  background-color: var(--eco-bg);
-}
-
 /* ---------- HERO ---------- */
 
 .free-content-hero {
-  padding: 3.5rem 0 3rem;
-  background: radial-gradient(
-    circle at top left,
-    #a8d5a3 0,
-    #f7f3ec 45%,
-    #e8e4db 100%
-  );
+  padding: 3rem 0 2.5rem;
+  background: linear-gradient(180deg, #c5e1ac 0%, #d8edbf 45%, #e7f3cf 100%);
   border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-.free-content-hero-inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2rem;
-  justify-content: space-between;
-}
-
-.free-content-hero-copy {
-  max-width: 520px;
-}
-
-.free-content-hero-kicker {
-  display: inline-block;
+.free-content-hero .free-content-hero-eyebrow {
   font-size: 0.8rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--eco-text-muted);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.25rem;
 }
 
 .free-content-hero-title {
-  font-size: clamp(2.2rem, 3vw, 2.6rem);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  margin-bottom: 0.5rem;
+  font-size: clamp(2rem, 2.3vw + 1.4rem, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
   color: var(--eco-text-main);
 }
 
 .free-content-hero-subtitle {
-  max-width: 460px;
+  max-width: 640px;
+  margin: 0 auto;
   font-size: 0.98rem;
   color: var(--eco-text-muted);
-  margin-bottom: 0;
-}
-
-.free-content-hero-badge {
-  max-width: 360px;
-  padding: 1.2rem 1.3rem;
-  background-color: #fdfbf6;
-  border-radius: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.03);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-}
-
-.free-content-hero-pill {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.25rem 0.8rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background-color: var(--eco-accent-soft);
-  color: var(--eco-text-main);
-  font-weight: 500;
-}
-
-.free-content-hero-meta {
-  font-size: 0.9rem;
-  color: var(--eco-text-muted);
-  margin-top: 0.6rem;
 }
 
 /* ---------- SECCIONES ---------- */
 
 .free-content-section {
   padding: 3rem 0;
+  background-color: #f5f0e5;
 }
 
 .free-content-section--alt {
-  background-color: #e8e4db;
+  background-color: var(--eco-bg);
 }
 
 .free-content-section-header {
@@ -131,10 +81,24 @@
   color: var(--eco-text-muted);
 }
 
+.guia-detail-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--eco-bg);
+  border-radius: 0.8rem;
+  margin-bottom: 30px;
+  padding: 35px;
+}
+
 /* ---------- CARDS ---------- */
+.card-body {
+  background-color: #fff !important;
+}
 
 .free-content-card {
   transition: transform 0.16s ease, box-shadow 0.16s ease;
+  background-color: #f7f7f7 !important;
 }
 
 .free-content-card:hover {
@@ -190,6 +154,10 @@
 
 /* ---------- VIDEOS ---------- */
 
+.video-card-body {
+  padding: 0;
+}
+
 .free-content-video-thumb {
   position: relative;
   background: radial-gradient(
@@ -198,7 +166,7 @@
     #222
   );
   height: 200px;
-  border-radius: 0.9rem 0.9rem 0 0;
+  border-radius: 0.8rem 0.8rem 0.8rem 0.8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -238,13 +206,9 @@
 /* ---------- NEWSLETTER ---------- */
 
 .free-content-newsletter {
-  padding: 3rem 0 3.5rem;
-  background: linear-gradient(
-    135deg,
-    rgba(168, 213, 132, 0.35),
-    rgba(247, 243, 236, 0.95)
-  );
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 3rem 0 2.5rem;
+  background: linear-gradient(180deg, #c5e1ac 0%, #d8edbf 45%, #e7f3cf 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .free-content-newsletter-inner {
