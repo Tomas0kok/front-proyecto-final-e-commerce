@@ -6,7 +6,7 @@ import Services from "../pages/Services";
 import FreeContent from "../pages/FreeContent";
 import Store from "../pages/Store";
 import Home from "../pages/Home";
-import FormCrash from "../pages/FormCrash.jsx";
+import FormCrash from "../components/FormCrash.jsx";
 import Impacto from "../pages/Impact.jsx";
 
 const router = createBrowserRouter([

@@ -158,7 +158,7 @@ const FreeContent = () => {
                 return (
                   <div className="col-md-4" key={post.id}>
                     <div className="card free-content-card h-100">
-                      <div className="card-body d-flex flex-column">
+                      <div className="card-body d-flex flex-column free-content-card-body">
                         <small className="free-content-meta mb-1">
                           {formattedDate
                             ? `${formattedDate} • ${post.views} vistas`

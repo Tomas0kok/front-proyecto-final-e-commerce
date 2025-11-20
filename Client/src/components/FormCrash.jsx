@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./FormCrash.css";
 
 const FormCrash = () => {
@@ -51,7 +51,7 @@ const FormCrash = () => {
 
   return (
     <div className="form-container">
-      <h1 className="form-title">Solicitud de Retiro Ecolife</h1>
+      <h1 className="form-eco-title">Solicitud de Retiro Ecolife</h1>
 
       <form className="eco-form" onSubmit={handleSubmit}>
         <div className="form-group">

@@ -92,8 +92,18 @@
 }
 
 /* ---------- CARDS ---------- */
-.card-body {
-  background-color: #fff !important;
+.free-content-card .card-body {
+  background-color: #f8eded !important;
+}
+
+#guias .card-body {
+  background-color: #f8eded !important;
+  border-radius: 0.8rem;
+}
+
+.free-content-card-body {
+  border-radius: 0.8rem;
+  background-color: #fff;
 }
 
 .free-content-card {
@@ -265,4 +275,31 @@
     flex: 1;
     max-width: 100%;
   }
+}
+
+/* ========================
+   UNIFICAR ESTILO DE CARDS
+   Blog, Guías y Videos
+   ======================== */
+
+.free-content-card,
+#guias .card,
+#videos .card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.free-content-card .card-body,
+#guias .card-body,
+#videos .card-body {
+  background-color: #fff !important;
+  border-radius: 0.9rem;
+  border: none !important;
+}
+
+.video-card-body {
+  background: #fff;
+  border-radius: 0.9rem;
+  overflow: hidden;
 }

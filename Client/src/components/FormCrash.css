@@ -23,11 +23,11 @@
 }
 
 /* Título */
-.form-title {
+.form-eco-title {
   text-align: center;
   font-size: 2rem;
   font-weight: 800;
-  color: #2f8f3f;
+  color: var(--eco-accent);
   margin-bottom: 20px;
 }
 
@@ -71,10 +71,10 @@
 }
 
 /* Botón */
-.form-button {
+.form-eco-button {
   width: 100%;
   padding: 14px;
-  background: #2f8f3f;
+  background: var(--eco-accent);
   color: white;
   font-size: 1.1rem;
   border: none;
@@ -96,19 +96,11 @@
   animation: fadeIn 1s ease;
 }
 
-.form-title {
-  text-align: center;
-  font-size: 32px;
-  color: #2d6a4f; /* verde ecolife */
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
 .eco-form {
   background: #f0fdf4;
   padding: 25px;
   border-radius: 12px;
-  border: 2px solid #2d6a4f;
+  border: 2px solid var(--eco-accent);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -140,7 +132,7 @@ select {
   width: 100%;
   padding: 12px;
   font-size: 18px;
-  background: #2d6a4f;
+  background: var(--eco-accent);
   color: white;
   border: none;
   border-radius: 8px;
@@ -149,7 +141,7 @@ select {
 }
 
 .eco-btn:hover {
-  background: #1b4332;
+  background: var(--eco-accent-soft);
 }
 
 /* --- ALERTA LINDA --- */

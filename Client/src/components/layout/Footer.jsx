@@ -29,13 +29,19 @@ function Footer() {
             <li>
               <a href="/tienda">Tienda</a>
             </li>
+            <li>
+              <a href="/servicios">Servicios</a>
+            </li>
+            <li>
+              <a href="/Gratis">Gratis</a>
+            </li>
           </ul>
         </div>
 
         {/* CONTACTO */}
         <div className="footer-col">
           <p className="footer-text">Montevideo, Uruguay</p>
-          <p className="footer-text">ecovida@gmail.com</p>
+          <p className="footer-text">ecolife@gmail.com</p>
         </div>
       </div>
 
