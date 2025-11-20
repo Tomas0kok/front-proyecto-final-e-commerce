@@ -37,6 +37,10 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+/* ===========================
+   SLIDER DESKTOP
+   =========================== */
+
 .slider-container {
   position: relative;
   overflow: hidden;
@@ -60,6 +64,15 @@
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+@keyframes slider-nudge {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-12px);
   }
 }
 
@@ -118,6 +131,10 @@
   margin-bottom: 10px;
 }
 
+/* ===========================
+   HERO HOME VIEJO (si se usa)
+   =========================== */
+
 .hero-section-home {
   min-height: 100vh;
   padding: 60px 40px;
@@ -133,6 +150,7 @@
   max-width: 600px;
   margin-bottom: 60px;
 }
+
 .card-tag {
   display: inline-block;
   background-color: #a8d5a3;
@@ -143,6 +161,7 @@
   font-weight: 600;
   margin-top: 10px;
 }
+
 .hero-content-home h1 {
   font-size: 5rem;
   font-weight: 900;
@@ -158,6 +177,7 @@
   color: #5d5d5d;
   margin-bottom: 30px;
 }
+
 .cards-container-home {
   position: relative;
   width: 100%;
@@ -189,7 +209,7 @@
 .card-content-home {
   padding: 20px;
 }
-/* Posiciones específicas para cada card */
+
 .product-card-home.bolsasReutilizables {
   width: 320px;
   top: 50px;
@@ -211,9 +231,10 @@
   transform: rotate(3deg);
 }
 
-.hero-content-home h1 {
-  font-size: 2.5rem;
-}
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
 @media (max-width: 1024px) {
   .hero-content-home h1 {
     font-size: 3.5rem;
@@ -252,39 +273,97 @@
     min-height: 1400px;
   }
 
-  .product-card-home {
+  /* 👇 TODO ESTO ERA GLOBAL, LO HACEMOS LOCAL AL HERO */
+  .cards-container-home .product-card-home {
     width: 260px !important;
     left: 50% !important;
     right: auto !important;
     transform: translateX(-50%) rotate(0deg) !important;
   }
 
-  .product-card-home.bolsasReutilizables {
+  .cards-container-home .product-card-home.bolsasReutilizables {
     top: 50px;
   }
 
-  .product-card-home.CestoCocina {
+  .cards-container-home .product-card-home.CestoCocina {
     top: 380px;
   }
 
-  .product-card-home.card-3 {
+  .cards-container-home .product-card-home.card-3 {
     top: 710px;
   }
 
-  .product-card-home:hover {
+  .cards-container-home .product-card-home:hover {
     transform: translateX(-50%) translateY(-10px) rotate(2deg) !important;
   }
-}
-@media (max-width: 768px) {
+
   .hero-title {
     font-size: 2.5rem;
   }
+}
+
+/* ===========================
+   RESPONSIVE SLIDER
+   =========================== */
+
+@media (max-width: 768px) {
+  .slider-container {
+    position: relative;
+  }
+
+  .slider-container::before,
+  .slider-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background: #e8e4db;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .slider-container::before {
+    left: 0;
+  }
+
+  .slider-container::after {
+    right: 0;
+  }
+
+  .slider-track {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 0 16px 8px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+
+    animation: slider-nudge 10s ease-in-out infinite;
+  }
 
   .product-card {
-    flex: 0 0 280px;
+    flex: 0 0 80%;
+    max-width: 80%;
+    scroll-snap-align: start;
   }
 
   .product-image {
-    height: 280px;
+    height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-track {
+    padding: 0 12px 8px;
+  }
+
+  .product-card {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+
+  .product-image {
+    height: 200px;
   }
 }

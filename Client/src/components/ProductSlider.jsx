@@ -1,101 +1,123 @@
-import bolsasReutilizables from "../../public/assets/images/products/bolsasReutilizables.jpg";
-import CestoCocina from "../../public/assets/images/products/CestoCocina.jpg";
-import CestoEconomico from "../../public/assets/images/products/CestoEconomico.jpg";
-import ComboComposteroCompleto from "../../public/assets/images/products/ComboComposteroCompleto.jpg";
-import KitProductosReciclables from "../../public/assets/images/products/KitProductosReciclables.jpg";
-import MiniCompostera from "../../public/assets/images/products/MiniCompostera.jpg";
+import { useEffect, useState, useMemo } from "react";
+import { getPublicProducts } from "../services/storeService";
+import ProductDetailModal from "../components/ProductDetailModal";
+import "./ProductSection.css";
 
 const ProductSlider = () => {
+  const [products, setProducts] = useState([]);
+  const [loadingProducts, setLoadingProducts] = useState(true);
+  const [errorProducts, setErrorProducts] = useState(null);
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  // Cargar productos desde la API
+  useEffect(() => {
+    let isMounted = true;
+
+    async function fetchProducts() {
+      try {
+        setLoadingProducts(true);
+        setErrorProducts(null);
+
+        const data = await getPublicProducts();
+
+        if (!isMounted) return;
+        setProducts(data);
+      } catch (err) {
+        console.error("[ProductSlider] Error cargando productos:", err);
+        if (isMounted) {
+          setErrorProducts("No se pudieron cargar los productos.");
+        }
+      } finally {
+        if (isMounted) {
+          setLoadingProducts(false);
+        }
+      }
+    }
+
+    fetchProducts();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // Duplicamos la lista para mantener el efecto de track infinito
+  const sliderProducts = useMemo(() => {
+    if (!products || products.length === 0) return [];
+    // Si quieres más “densidad”, podrías hacer [...products, ...products, ...products]
+    return [...products, ...products];
+  }, [products]);
+
+  const openModal = (product) => {
+    setSelectedProduct(product);
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null);
+    document.body.style.overflow = "unset";
+  };
+
   return (
     <>
-      {/* ... hero section ... */}
-
+      {/* Hero del store se mantiene afuera, acá solo el slider */}
       <section className="slider-container">
-        <div className="slider-track">
-          <div className="product-card">
-            <img
-              src={bolsasReutilizables}
-              alt="bolsa"
-              className="product-image"
-            />
-            <div className="product-info">
-              <span className="badge-eco">Eco-friendly</span>
-              <h3 className="product-title">Bolsas Reutilizables</h3>
-              <p className="product-description">
-                Bolsas de alta calidad reutilizables.
-              </p>
-              <p className="product-price">$1,500</p>
-            </div>
-          </div>
-          <div className="product-card">
-            <img
-              src={CestoCocina}
-              alt="CestoCocina"
-              className="product-image"
-            />
-            <div className="product-info">
-              <span className="badge-eco">CestoCocina</span>
-              <h3 className="product-title">Cesto Cocina</h3>
-              <p className="product-description">Tres Cestos de cocina</p>
-              <p className="product-price">$350</p>
-            </div>
-          </div>
-          <div className="product-card">
-            <img src={CestoEconomico} alt="cesto" className="product-image" />
-            <div className="product-info">
-              <span className="badge-eco">estoEconomico</span>
-              <h3 className="product-title">Cesto Económico</h3>
-              <p className="product-description">
-                Cesto Economico para interior.
-              </p>
-              <p className="product-price">$280</p>
-            </div>
-          </div>
+        {errorProducts && (
+          <p
+            className="product-description-home"
+            style={{ textAlign: "center" }}
+          >
+            {errorProducts}
+          </p>
+        )}
 
-          {/* Duplicados para efecto infinito */}
-          <div className="product-card">
-            <img
-              src={ComboComposteroCompleto}
-              alt="ComboComposteroCompleto"
-              className="product-image"
-            />
-            <div className="product-info">
-              <span className="badge-eco">Combo para compostar</span>
-              <h3 className="product-title">Combo Premium</h3>
-              <p className="product-description">Compostera de alta calidad.</p>
-              <p className="product-price">$1,500</p>
-            </div>
+        {loadingProducts && sliderProducts.length === 0 ? (
+          <p
+            className="product-description-home"
+            style={{ textAlign: "center" }}
+          >
+            Cargando productos...
+          </p>
+        ) : sliderProducts.length === 0 ? (
+          <p
+            className="product-description-home"
+            style={{ textAlign: "center" }}
+          >
+            No hay productos disponibles por el momento.
+          </p>
+        ) : (
+          <div className="slider-track">
+            {sliderProducts.map((product, index) => (
+              <div
+                key={`${product.id}-${index}`}
+                className="product-card"
+                onClick={() => openModal(product)}
+              >
+                <img
+                  src={product.image}
+                  alt={product.alt}
+                  className="product-image"
+                />
+                <div className="product-info">
+                  <span className="badge-eco">{product.badge}</span>
+                  <h3 className="product-title">{product.title}</h3>
+                  <p className="product-description">{product.description}</p>
+                  <div className="product-stock-wrapper">
+                    <p className="product-price">{product.price}</p>
+                    <span className="product-stock-home">
+                      {product.stock} u.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-
-          <div className="product-card">
-            <img
-              src={KitProductosReciclables}
-              alt="Kit"
-              className="product-image"
-            />
-            <div className="product-info">
-              <span className="badge-eco">Biodegradable</span>
-              <h3 className="product-title">Productos reciclables</h3>
-              <p className="product-description">Tipos de productos</p>
-              <p className="product-price">$350</p>
-            </div>
-          </div>
-
-          <div className="product-card">
-            <img
-              src={MiniCompostera}
-              alt="MiniCompostera"
-              className="product-image"
-            />
-            <div className="product-info">
-              <span className="badge-eco">Mini compostera</span>
-              <h3 className="product-title">Compostera</h3>
-              <p className="product-description">composteratera</p>
-              <p className="product-price">$280</p>
-            </div>
-          </div>
-        </div>
+        )}
       </section>
+
+      {selectedProduct && (
+        <ProductDetailModal product={selectedProduct} onClose={closeModal} />
+      )}
     </>
   );
 };

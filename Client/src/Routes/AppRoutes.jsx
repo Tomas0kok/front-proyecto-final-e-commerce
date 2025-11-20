@@ -6,7 +6,6 @@ import Services from "../pages/Services";
 import FreeContent from "../pages/FreeContent";
 import Store from "../pages/Store";
 import Home from "../pages/Home";
-import HomeStore from "../pages/HomeStore";
 import FormCrash from "../pages/FormCrash.jsx";
 import Impacto from "../pages/Impact.jsx";
 
@@ -30,10 +29,6 @@ const router = createBrowserRouter([
       {
         path: "/tienda",
         element: <Store />,
-      },
-      {
-        path: "/HomeStore",
-        element: <HomeStore />,
       },
       {
         path: "/formcrash",

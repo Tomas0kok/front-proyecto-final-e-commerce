@@ -5,7 +5,7 @@ const HeroStore = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <h1 className="hero-title">SOMOS NATURALEZA</h1>
+              <h1 className="hero-title mb-3">SOMOS NATURALEZA</h1>
             </div>
             <div className="col-lg-6">
               <p className="hero-description">
